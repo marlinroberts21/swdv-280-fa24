@@ -7,4 +7,16 @@
     <RootNamespace>total_test_1</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="wwwroot\Assets\image1.jpg" />
+    <None Remove="wwwroot\Assets\image2.jpg" />
+    <None Remove="wwwroot\Assets\image3.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="wwwroot\Assets\image1.jpg" />
+    <Resource Include="wwwroot\Assets\image2.jpg" />
+    <Resource Include="wwwroot\Assets\image3.jpg" />
+  </ItemGroup>
+
 </Project>
