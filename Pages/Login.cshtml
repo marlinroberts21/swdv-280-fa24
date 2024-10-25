@@ -11,12 +11,22 @@ Install these using the NuGet Package Manager.
 @model total_test_1.Pages.LoginModel
 @{
     ViewData["Title"] = "Login page";
+ 
+    string test = LoginModel.loginClicked();
 }
+<script>
+
+        $('.submitButton').click(function () {
+            $('#testid').text("worked");
+            testid.text = "test"
+
+    }
+</script>
 <div class="text-center">
     <h1 class="display-5">Login</h1><br>
-    <label>Username:</label>
-    <input /><br><br>
+    <label id="testid">@test</label>
+    <input id="username"/><br><br>
     <label>Password:</label>
-    <input /><br><br>
-    <input type="submit" value="Submit"/>
+    <input id="password"/><br><br>
+    <input CssClass="submitButton" type="submit" value="Submit" onclick="@Response.Redirect("https://localhost:7091/Collision")" />
 </div>

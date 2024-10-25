@@ -8,5 +8,10 @@ namespace total_test_1.Pages
         public void OnGet()
         {
         }
+        public static string loginClicked()
+        {
+
+            return "the button worked!";
+        }
     }
 }
