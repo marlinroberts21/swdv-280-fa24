@@ -13,7 +13,13 @@
 
 <!-- The form for scheduling an appointment -->
 <form>
-    <asp:Calander id="Calender1" runat="server" Height="263px" Width="283px"></asp:Calander>
+
+    <div class="d-flex justify-content-center">
+            <label>Day</label> <input type="date" />
+            <label for="times">Time:</label>
+            <select name="times" id="time">
+            </select>
+    </div>
 
     <div class="m-5">
         <label for="services">Type of Service:</label>
