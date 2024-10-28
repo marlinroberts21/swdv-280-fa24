@@ -7,4 +7,11 @@
     <RootNamespace>total_test_1</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Update="Pages\Forms.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
