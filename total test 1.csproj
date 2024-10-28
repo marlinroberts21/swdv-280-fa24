@@ -29,6 +29,10 @@
     <Resource Include="wwwroot\Assets\image1.jpg" />
     <Resource Include="wwwroot\Assets\image2.jpg" />
     <Resource Include="wwwroot\Assets\image3.jpg" />
+    <Content Update="Pages\Forms.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
