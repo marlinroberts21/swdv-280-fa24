@@ -4,7 +4,91 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Hunter changed the background to light blue</h1>
-    <p>I also changed this</p>
-</div>
+<body>
+    <header style="background-image: url('./Assets/HomeBanner.jpg');">
+        <div class="color-overlay d-flex flex-column justify-content-center align-items-center">
+            <h1>Welcome to Scott's Auto Repair!</h1> 
+        </div>
+    </header> 
+    <!--cards section -->
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-sm-4 mb-4">
+                <div class="card">
+                    <img src="~/Assets/HomeCollision.jpg" class="card-img-top img-fit" alt="before and after car collision" />
+                    <div class="card-body">
+                        <h4 class="card-title">Jhon Doe</h4>
+                        <p class="card-text">"Scott’s Auto Repair took care of my car after a major fender bender, and the results were flawless! The team worked quickly and communicated every step of the way. My car looks as good as new. Highly recommend their collision repair services!"</p>
+                        <a href="/Collision" class="btn btn-primary btn-block">Collision Repair</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 mb-4">
+                <div class="card">
+                    <img src="~/Assets/HomeCarWraps.jpg" class="card-img-top img-fit" alt="Car Wraps" />
+                    <div class="card-body">
+                        <h4 class="card-title">Jane Smith</h4>
+                        <p class="card-text">"I decided to change the color of my car, and Scott’s Auto Repair made it happen beautifully! The new color looks vibrant and professionally done, with no imperfections. They really listened to what I wanted and delivered perfectly. Highly recommend for anyone looking to refresh their car’s look!" </p>
+                        <a href="/Painting" class="btn btn-primary btn-block">Painting</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 mb-4">
+                <div class="card">
+                    <img src="~/Assets/HomeCustomPaint.jpg" class="card-img-top img-fit" alt="Custom painting on a car" />
+                    <div class="card-body">
+                        <h4 class="card-title">William Hudson</h4>
+                        <p class="card-text">"I wanted a custom look for my car, and Scott’s Auto Repair delivered beyond my expectations! The specialty paint job turned out amazing, with perfect attention to detail. My car looks unique and stunning. Fantastic service!"</p>
+                        <a href="/Painting" class="btn btn-primary btn-block">Specialty Painting</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</body>
+
+
+<style> 
+header {
+        background: no-repeat center center;
+        background-size: cover;
+        color: white;
+}
+
+.color-overlay {
+        min-height: 60vh;
+        background-color: rgba(0,0,0,.5);
+
+}
+
+.card .img-fit {
+        aspect-ratio: 8.8 / 8;
+        object-fit: cover;
+        
+}
+
+.card {
+        height: 100%;
+}
+
+.card-body {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    
+}
+
+.card-text {
+        flex-grow: 1;
+        font-style: italic;
+} 
+
+.container {
+        padding: 20px 0 10px 0;
+}
+
+</style> 
+
+
