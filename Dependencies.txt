@@ -1,9 +1,20 @@
-This is a list of dependencies that are needed to run the program.
+Run the command "dotnet restore" in your project folder every time you merge changes from main. 
+This will install any packages you need to run the program.
 
-If you add a dependency, modify this file on your branch. 
-Once your branch is pulled into main, your dependency will be added to this list on the main branch.
+If you would perfer to add them manually, here is a list of dependencies that are needed to run the program.
+
+
 
 EXAMPLE DEPENDENCY: 
 package_name, version_of_package
 
 CURRENT DEPENDENCIES:
++++++++++++++++++
+
+
+
+
++++++++++++++++++
+
+If you add a dependency, modify this file on your branch. 
+Once your branch is pulled into main, your dependency will be added to this list on the main branch.
