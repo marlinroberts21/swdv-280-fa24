@@ -11,8 +11,11 @@ package_name, version_of_package
 CURRENT DEPENDENCIES:
 +++++++++++++++++
 
+Microsoft.AspNetCore.Identity.UI
 
+Microsoft.EntityFrameworkCore.Tools
 
+Microsoft.AspNetCore.Identity.EntityFrameworkCore
 
 +++++++++++++++++
 
