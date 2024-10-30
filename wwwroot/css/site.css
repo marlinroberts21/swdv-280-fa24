@@ -21,3 +21,10 @@ body {
   margin-bottom: 60px;
   background-color: lightblue;
 }
+
+.aboutbanner {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 103%;
+}
