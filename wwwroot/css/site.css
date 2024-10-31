@@ -30,3 +30,13 @@ header {
 a {
     color: #FFFFFF;
 }
+
+#appointmentForm{
+    
+}
+.aboutbanner {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 103%;
+}

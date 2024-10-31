@@ -1,9 +1,67 @@
 ﻿@page
 @model AppointmentsModel
+
 @{
     ViewData["Title"] = "Appointments Page";
 }
 
+<head><title>Appointments</title></head>
+<body>
+    <h1 class="text-center">Schedule an Appointment!</h1>
+    <br />
 
-<h1>Appointments Page </h1>
+    <p class="text-center">Please fill out the form below with your information and choose an available appointment time.</p>
+    <br />
+
+<!-- The form for scheduling an appointment -->
+<form id="appointmentForm" class="mx-auto w-50">
+
+    <div class="d-flex flex-wrap justify-content-between">
+            <div class="form-group">
+                <label class="form-label">Day</label> <input class="form-control" type="date" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="times">Time: </label>
+                <select class="form-select" name="times" id="time">
+                    <option>10:00 AM</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="services">Type of Service:</label>
+                <select class="form-select" name="services" id="service">
+                    <option value="collision">Collision Repair</option>
+                    <option value="paint">Painting</option>
+                    <option value="specialtyPaint">Specialty Painting</option>
+                </select> 
+            </div>
+    </div> <br />
+
+    <div class="form-group">
+        <label class="form-label">First Name: </label><input class="form-control" type="text" /> <br />
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Last Name: </label><input class="form-control" type="text" /> <br />
+    </div>
+      
+    <div class="form-group">
+        <label class="form-label">Email Address: </label><input class="form-control" type="text" /> <br />
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Phone number: </label><input class="form-control" type="text" /> <br />
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-primary" >Clear</button>
+        <button class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
+
+</body>
+
+
 
