@@ -19,5 +19,14 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: lightblue;
+  background-color: #333333;
+  color: #FFFFFF;
+}
+
+header {
+  background-color: #152238;
+}
+
+a {
+    color: #FFFFFF;
 }
