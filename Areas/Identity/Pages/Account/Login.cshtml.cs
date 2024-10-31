@@ -132,7 +132,7 @@ namespace total_test_1.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Incorrect username or password.");
                     return Page();
                 }
             }
