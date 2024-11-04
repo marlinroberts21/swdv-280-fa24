@@ -10,9 +10,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand navbar-toggleable-md border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">total_test_1</a>
+                <a class="navbar-brand text-white" asp-area="" asp-page="/Index">total_test_1</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,29 +20,30 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <ul class="navbar-nav flex-grow-1 justify-content-end justify-content-around">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Appointments">Appointments</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Appointments">Appointments</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Forms">Forms</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Forms">Forms</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/CollisionRepair">Collision Repair</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/CollisionRepair">Collision Repair</a>
                         </li>
-						<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Painting">Painting</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Painting">Painting</a>
                         </li>
-                         </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="">About</a>
-                        </li>
-                        </li>
-                            <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="">Account</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/About">About</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Admin">Admin</a>
+                        <li class="nav-item">
+                            <partial name="_LoginPartial" />
                         </li>
                    </ul>
+
+                   
                 </div>
             </div>
         </nav>

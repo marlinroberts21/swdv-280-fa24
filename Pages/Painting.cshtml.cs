@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace total_test_1.Pages
 {
-    [Authorize]
-    public class AdminModel : PageModel
+    public class PaintingModel : PageModel
     {
-        private readonly ILogger<AdminModel> _logger;
+        private readonly ILogger<PaintingModel> _logger;
 
-        public AdminModel(ILogger<AdminModel> logger)
+        public PaintingModel(ILogger<PaintingModel> logger)
         {
             _logger = logger;
         }
@@ -18,4 +16,5 @@ namespace total_test_1.Pages
         {
         }
     }
+
 }

@@ -19,5 +19,29 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: lightblue;
+  background-color: #333333;
+  color: #FFFFFF;
+}
+
+nav {
+  background-color: #152238;
+}
+
+a {
+    color: #FFFFFF;
+}
+
+#appointmentForm{
+    
+}
+.aboutbanner {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 103%;
+}
+
+.card {
+    background-color: #333333;
+    border: none;
 }
