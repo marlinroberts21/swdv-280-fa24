@@ -23,7 +23,7 @@ body {
   color: #FFFFFF;
 }
 
-header {
+nav {
   background-color: #152238;
 }
 
@@ -40,4 +40,9 @@ a {
     margin-right: auto;
     display: flex;
     width: 103%;
+}
+
+.card {
+    background-color: #333333;
+    border: none;
 }
