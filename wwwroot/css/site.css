@@ -44,3 +44,33 @@ a {
 .card {
     background-color: #333333;
 }
+
+.nav-link {
+    font-size: 30px;
+}
+
+.nav-item {
+    padding-right: 70px;
+}
+
+.navbar-brand {
+    padding-left: 150px;
+}
+
+.navbar-toggler-icon {
+    background-color: #ffffff; 
+    border-radius: 5px; 
+    height: 30px; 
+    width: 30px; 
+}
+
+footer {
+    background-color: #152238;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
