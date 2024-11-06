@@ -19,5 +19,12 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore
 
 +++++++++++++++++
 
+POTENTIAL DEPENDENCIES:
+-----------------
+
+Microsoft.Data.SqlClient
+
+-----------------
+
 If you add a dependency, modify this file on your branch. 
 Once your branch is pulled into main, your dependency will be added to this list on the main branch.
