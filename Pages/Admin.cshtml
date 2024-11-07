@@ -17,9 +17,77 @@
 				</div>
 			</form>
 	</div>
+    @* 
+    ===========================
+    This ListView is half-baked. I copied a template and changed a few things. It does not work yet. 
+    ===========================
+        *@
+    <div class="text-center container d-flex justify-content-center">
+        <form id="form1" runat="server">
+
+            <h3>Appointments</h3>
+
+            <asp:ListView ID="AppointmentListView"
+                          DataSourceID="AppointmentConnection"
+                          DataKeyNames="AppointmentID"
+                          runat="server">
+                <LayoutTemplate>
+                    <table cellpadding="2" width="640px" border="1" ID="tbl1" runat="server">
+                        <tr runat="server" style="">
+                            <th runat="server">Selected</th>
+                            <th runat="server">First Name</th>
+                            <th runat="server">Last Name</th>
+                            <th runat="server">Appointment Time</th>
+                        </tr>
+                        <tr runat="server" id="itemPlaceholder" />
+                    </table>
+                    <asp:DataPager ID="DataPager1" runat="server">
+                        <Fields>
+                            <asp:NumericPagerField />
+                        </Fields>
+                    </asp:DataPager> 
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <table>
+                        <tr runat="server">
+                            <td>
+                                <asp:LinkButton ID="LinkButton" runat="server" CommandName="">
+                                    <asp:RadioButton ID="SelectedAppointment" runat="server" AutoPostBack="true" OnCheckedChanged="" />
+                                </asp:LinkButton>
+                            </td>
+                            <td>
+                                <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName") %>' />
+                            </td>
+                            <td>
+                                <asp:Label ID="LastNameLabel" runat="server" Text='<%# Eval("LastName") %>' />
+                            </td>
+                            <td>
+                                <asp:Label ID="AppointmentTimeLabel" runat="server" Text="time from db" />
+                            </td>
+                    </tr>
+                    </table>
+                </ItemTemplate>
+            </asp:ListView>
+
+            @*
+            ===========================
+            This is a SQL query that we would rather be a stored procedure 
+            ===========================
+            *@
+            <asp:LinqDataSource ID="Schedule" runat="server"
+                                ContextTypeName="AppointmentConnection"
+                                Select="new (FirstName, LastName)"
+                                TableName="Customers">
+                <WhereParameters>
+                    <asp:Parameter DefaultValue="true" Name="ActiveFlag" Type="Boolean" />
+                </WhereParameters>
+            </asp:LinqDataSource> 
+
+        </form>
+	</div>
 	<div class="container d-flex justify-content-center mt-5">
 		<a href="#" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
-		<a href="#" class="ms-5 btn btn-primary">Add An Appointment</a>
+		<a class="ms-5 btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
 	</div>
 	<div class="text-center mt-5">
 		<h2>Scott Didriksen</h2>

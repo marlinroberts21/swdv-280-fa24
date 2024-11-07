@@ -17,5 +17,7 @@ namespace total_test_1.Pages
         public void OnGet()
         {
         }
+
+        //add a method that allows radio buttons to work as expected. Listviews don't play nice with radio buttons.
     }
 }
