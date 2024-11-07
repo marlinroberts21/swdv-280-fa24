@@ -10,19 +10,21 @@
 	</div>
 	<hr />
 	<div class="text-center container d-flex justify-content-center">
-			<form>
-				<div class="mb-3">
-					<input type="date" class="form-control pe-4 ps-4" id="dateEntry" />
-					<div class="form-text">Today - 10/16/24</div>
-				</div>
-			</form>
+        <form>
+		@* <form asp-action="Edit" method="post"> *@
+			<div class="mb-3">
+                <input type="date" class="form-control pe-4 ps-4" id="dateEntry"/>
+				@* <input type="date" class="form-control pe-4 ps-4" id="dateEntry" onchange="GetCustomers"/> *@
+				<div class="form-text">Today - 10/16/24</div>
+			</div>
+		</form>
 	</div>
     @* 
     ===========================
     This ListView is half-baked. I copied a template and changed a few things. It does not work yet. 
     ===========================
         *@
-    <div class="text-center container d-flex justify-content-center">
+    @* <div class="text-center container d-flex justify-content-center">
         <form id="form1" runat="server">
 
             <h3>Appointments</h3>
@@ -73,7 +75,7 @@
             ===========================
             This is a SQL query that we would rather be a stored procedure 
             ===========================
-            *@
+           
             <asp:LinqDataSource ID="Schedule" runat="server"
                                 ContextTypeName="AppointmentConnection"
                                 Select="new (FirstName, LastName)"
@@ -84,7 +86,27 @@
             </asp:LinqDataSource> 
 
         </form>
-	</div>
+
+
+@*         <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@customer.FirstName/td>
+                    <td>@customer.LastName</td>
+
+                </tr>
+            }
+        </table> 
+
+
+
+
+	</div> *@
 	<div class="container d-flex justify-content-center mt-5">
 		<a href="#" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
 		<a class="ms-5 btn btn-primary" asp-page="/Appointments">Add An Appointment</a>

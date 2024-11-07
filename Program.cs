@@ -13,6 +13,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseSqlServer(connectionString);
 });
+//builder.Services.AddDbContext<ScheduleDbContext>(options =>
+//{
+//    var connectionString = builder.Configuration.GetConnectionString("ScheduleConnection");
+//    options.UseSqlServer(connectionString);
+//});
 
 builder.Services.AddDefaultIdentity<AdminUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
 
