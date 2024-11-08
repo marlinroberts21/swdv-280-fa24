@@ -46,3 +46,16 @@ a {
     background-color: #333333;
     border: none;
 }
+
+
+
+footer {
+    background-color: #152238;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
