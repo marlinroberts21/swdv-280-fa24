@@ -1,22 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using total_test_1.Models.Schedule;
 using total_test_1.Pages;
+using total_test_1.Services;
 
 namespace total_test_1.Controllers
 {
     public class AdminController : Controller
     {
         private ScheduleContext context;
-        public AdminController(ScheduleContext ctx)
+		public AdminController(ScheduleContext ctx)
         {
             context = ctx;
         }
-        public IActionResult Index()
+        public string Index()
         {
-            List<Customer> customer = new List<Customer>();
-            customer = context.Customers.ToList();
-            string test = "hello";
-            return View(customer);
+            return "Test Index";
+        }
+
+        public string Test()
+        {
+            string name = "";
+
+            foreach (Customer customer in context.Customers)
+            {
+                name = customer.FirstName;
+            }
+            return name;
         }
     }
 }
