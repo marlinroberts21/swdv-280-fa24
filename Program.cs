@@ -25,6 +25,11 @@ builder.Services.AddDbContext<ReviewsContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("ReviewsConnection");
     options.UseSqlServer(connectionString);
 });
+builder.Services.AddDbContext<ScheduleContext>(options =>
+{
+	var connectionString = builder.Configuration.GetConnectionString("ScheduleConnection");
+	options.UseSqlServer(connectionString);
+});
 
 builder.Services.AddDbContext<ScheduleContext>(options =>
 {
