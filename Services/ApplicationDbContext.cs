@@ -7,7 +7,7 @@ namespace total_test_1.Services
 {
     public class ApplicationDbContext: IdentityDbContext<AdminUser>
     {
-        public ApplicationDbContext(DbContextOptions options) :base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options)
         {
             
         }
