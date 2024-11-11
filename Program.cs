@@ -30,13 +30,6 @@ builder.Services.AddDbContext<ScheduleContext>(options =>
 	var connectionString = builder.Configuration.GetConnectionString("ScheduleConnection");
 	options.UseSqlServer(connectionString);
 });
-
-builder.Services.AddDbContext<ScheduleContext>(options =>
-{
-	var connectionString = builder.Configuration.GetConnectionString("ScheduleConnection");
-	options.UseSqlServer(connectionString);
-});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
