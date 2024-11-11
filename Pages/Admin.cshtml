@@ -11,102 +11,12 @@
 	<hr />
 	<div class="text-center container d-flex justify-content-center">
         <form>
-		@* <form asp-action="Edit" method="post"> *@
 			<div class="mb-3">
                 <input type="date" class="form-control pe-4 ps-4" id="dateEntry"/>
-				@* <input type="date" class="form-control pe-4 ps-4" id="dateEntry" onchange="GetCustomers"/> *@
 				<div class="form-text">Today - 10/16/24</div>
 			</div>
 		</form>
 	</div>
-    @* 
-    ===========================
-    This ListView is half-baked. I copied a template and changed a few things. It does not work yet. 
-    ===========================
-        *@
-    @* <div class="text-center container d-flex justify-content-center">
-        <form id="form1" runat="server">
-
-            <h3>Appointments</h3>
-
-            <asp:ListView ID="AppointmentListView"
-                          DataSourceID="AppointmentConnection"
-                          DataKeyNames="AppointmentID"
-                          runat="server">
-                <LayoutTemplate>
-                    <table cellpadding="2" width="640px" border="1" ID="tbl1" runat="server">
-                        <tr runat="server" style="">
-                            <th runat="server">Selected</th>
-                            <th runat="server">First Name</th>
-                            <th runat="server">Last Name</th>
-                            <th runat="server">Appointment Time</th>
-                        </tr>
-                        <tr runat="server" id="itemPlaceholder" />
-                    </table>
-                    <asp:DataPager ID="DataPager1" runat="server">
-                        <Fields>
-                            <asp:NumericPagerField />
-                        </Fields>
-                    </asp:DataPager> 
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <table>
-                        <tr runat="server">
-                            <td>
-                                <asp:LinkButton ID="LinkButton" runat="server" CommandName="">
-                                    <asp:RadioButton ID="SelectedAppointment" runat="server" AutoPostBack="true" OnCheckedChanged="" />
-                                </asp:LinkButton>
-                            </td>
-                            <td>
-                                <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="LastNameLabel" runat="server" Text='<%# Eval("LastName") %>' />
-                            </td>
-                            <td>
-                                <asp:Label ID="AppointmentTimeLabel" runat="server" Text="time from db" />
-                            </td>
-                    </tr>
-                    </table>
-                </ItemTemplate>
-            </asp:ListView>
-
-            @*
-            ===========================
-            This is a SQL query that we would rather be a stored procedure 
-            ===========================
-           
-            <asp:LinqDataSource ID="Schedule" runat="server"
-                                ContextTypeName="AppointmentConnection"
-                                Select="new (FirstName, LastName)"
-                                TableName="Customers">
-                <WhereParameters>
-                    <asp:Parameter DefaultValue="true" Name="ActiveFlag" Type="Boolean" />
-                </WhereParameters>
-            </asp:LinqDataSource> 
-
-        </form>
-
-
-@*         <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-            @foreach (var customer in Model.Customers)
-            {
-                <tr>
-                    <td>@customer.FirstName/td>
-                    <td>@customer.LastName</td>
-
-                </tr>
-            }
-        </table> 
-
-
-
-
-	</div> *@
 	<div class="container d-flex justify-content-center mt-5">
 		<a href="#" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
 		<a class="ms-5 btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
