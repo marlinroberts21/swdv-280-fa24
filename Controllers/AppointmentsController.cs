@@ -6,6 +6,7 @@ namespace total_test_1.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
     }
