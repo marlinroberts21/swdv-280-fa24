@@ -24,11 +24,15 @@ body {
 }
 
 nav {
-  background-color: #152238;
+    background-color: #152238;
 }
 
 a {
     color: #FFFFFF;
+}
+
+.nav-link {
+    font-size: 20px;
 }
 
 #appointmentForm{
@@ -45,4 +49,23 @@ a {
 .card {
     background-color: #333333;
     border: none;
+}
+
+.navbar-nav {
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    margin: 0 4rem; 
+}
+
+footer {
+    background-color: #152238;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
