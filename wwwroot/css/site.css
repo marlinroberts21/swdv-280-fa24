@@ -24,11 +24,15 @@ body {
 }
 
 nav {
-  background-color: #152238;
+    background-color: #152238;
 }
 
 a {
     color: #FFFFFF;
+}
+
+.nav-link {
+    font-size: 20px;
 }
 
 #appointmentForm{
@@ -47,7 +51,13 @@ a {
     border: none;
 }
 
+.navbar-nav {
+    flex-wrap: wrap;
+}
 
+.nav-item {
+    margin: 0 4rem; 
+}
 
 footer {
     background-color: #152238;
