@@ -7,18 +7,22 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/total_test_1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand navbar-toggleable-md border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand text-white" asp-area="" asp-page="/Index">total_test_1</a>
+        <nav class="navbar navbar-expand-sm border-bottom box-shadow mb-3 navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" asp-area="" asp-page="/Index">
+                    <img src="~/Assets/Scott'sLogo.png" style="max-height: 50px;" />
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex">
-                    <ul class="navbar-nav flex-grow-1 justify-content-end justify-content-around">
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav flex-grow-1 justify-content-evenly">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-page="/Index">Home</a>
                         </li>
@@ -36,27 +40,31 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-page="/About">About</a>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-page="/Admin">Admin</a>
-                        <li class="nav-item">
-                            <partial name="_LoginPartial" />
                         </li>
-                   </ul>
-
-                   
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Reviews">Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-page="/Admin">
+                                <img src="~/Assets/adminIcon.png" style="max-height: 30px; vertical-align: middle; margin-right: 5px;" alt="Admin Icon" />
+                            </a>
+                        </li>
+                            <partial name="_LoginPartial" />
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top border-bottom footer text-white">
         <div class="container">
-            &copy; 2024 - total_test_1 - <a asp-area="" asp-page="/">Privacy</a>
+            Marlin Roberts, (208) 123-4567, marlinroberts@cwi.edu, 8:30 - 5:30, Mon-Sat
         </div>
     </footer>
 

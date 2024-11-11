@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using total_test_1.Services;
 using Microsoft.AspNetCore.Identity;
-using total_test_1.Models;
+using total_test_1.Models.Admin;
+using total_test_1.Models.Reviews;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddDefaultIdentity<AdminUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddDbContext<ReviewsContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("ReviewsConnection");
+    options.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 

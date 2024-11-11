@@ -1,0 +1,48 @@
+﻿@page
+@{
+    ViewData["Title"] = "Reviews";
+}
+
+<h1>Reviews Page</h1>
+
+<!-- Reviews Form -->
+<form>
+    <div class="row">
+        <div class="starrating">
+            <p class="stars">
+                <label class="myrating">0</label>
+                <span>
+                    <a class="star-1" href="#">1</a>
+                    <a class="star-2" href="#">2</a>
+                    <a class="star-3" href="#">3</a>
+                    <a class="star-4" href="#">4</a>
+                    <a class="star-5" href="#">5</a>
+                </span>
+            </p>
+            <script>
+                $('.stars a').on('click', function () {
+                    $('.stars span, .stars a').removeClass('active');
+
+                    $(this).addClass('active');
+                    $('.stars span').addClass('active');
+                    $('.myrating').html($(this).text());
+                });
+            </script>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="First name" aria-label="First name" required>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+        </div>
+        <!-- Text box -->
+        <div>
+            <label for="reviewText" class="form-label"></label>
+            <textarea class="form-control" placeholder="Write review here" id="reviewText" style="height: 100px"></textarea>
+        </div>
+        <!-- Button -->
+        <div class="text-center mt-5">
+            <button type="submit" class="btn btn-primary" style="width: 40%">Submit</button> 
+        </div>
+    </div>
+</form> 
