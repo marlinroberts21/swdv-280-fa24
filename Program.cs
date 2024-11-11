@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using total_test_1.Services;
 using Microsoft.AspNetCore.Identity;
-using total_test_1.Models;
+using total_test_1.Models.Admin;
+using total_test_1.Models.Reviews;
 
 var builder = WebApplication.CreateBuilder(args);
 
