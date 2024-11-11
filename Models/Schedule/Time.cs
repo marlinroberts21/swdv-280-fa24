@@ -4,18 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace total_test_1.Models;
+namespace total_test_1.Models.Schedule;
 
-public partial class Category
+public partial class Time
 {
     [Key]
-    public int CategoryId { get; set; }
+    public int TimeId { get; set; }
 
-    [Column("Category")]
-    [StringLength(255)]
-    [Unicode(false)]
-    public string Category1 { get; set; } = null!;
+    [Column("Time")]
+    public TimeOnly Time1 { get; set; }
 
-    [InverseProperty("Category")]
+    [InverseProperty("Time")]
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 }

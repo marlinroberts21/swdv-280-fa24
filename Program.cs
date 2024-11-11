@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using total_test_1.Services;
 using Microsoft.AspNetCore.Identity;
-using total_test_1.Models;
+using total_test_1.Models.Admin;
+using total_test_1.Models.Reviews;
+using total_test_1.Models.Schedule;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,11 @@ builder.Services.AddDefaultIdentity<AdminUser>(options => options.SignIn.Require
 builder.Services.AddDbContext<ScheduleContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("AppointmentConnection");
+});
+
+builder.Services.AddDbContext<ReviewsContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("ReviewsConnection");
     options.UseSqlServer(connectionString);
 });
 
