@@ -14,14 +14,14 @@ public partial class Customer
     [StringLength(255)]
     [Unicode(false)]
     [Required(ErrorMessage = "Please enter a first name.")]
-    [RegularExpression("^[a-zA-Z0-9+$",
+    [RegularExpression("^[a-zA-Z0-9+$]",
         ErrorMessage ="First name may not contain special characters.")]
     public string FirstName { get; set; } = null!;
 
     [StringLength(255)]
     [Unicode(false)]
     [Required(ErrorMessage = "Please enter a last name.")]
-    [RegularExpression("^[a-zA-Z0-9+$",
+    [RegularExpression("^[a-zA-Z0-9+$]",
         ErrorMessage = "Last name may not contain special characters.")]
     public string LastName { get; set; } = null!;
 

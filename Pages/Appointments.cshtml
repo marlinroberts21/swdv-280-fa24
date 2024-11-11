@@ -1,5 +1,5 @@
 ﻿@page
-@model AppointmentsModel
+@model total_test_1.Models.Appointment
 
 @{
     ViewData["Title"] = "Appointments Page";
@@ -14,7 +14,7 @@
     <br />
 
 <!-- The form for scheduling an appointment -->
-<form id="appointmentForm" class="mx-auto w-50">
+<form asp-action="AddAppointment" method="post" id="appointmentForm" class="mx-auto w-50">
 
     <div class="d-flex flex-wrap justify-content-between">
             <div class="form-group">
@@ -40,24 +40,24 @@
 
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label class="form-label">First Name: </label><input asp-for="FirstName" class="form-control" type="text" /> <br />
+        <label class="form-label">First Name: </label><input asp-for="Customer.FirstName" class="form-control" type="text" /> <br />
     </div>
 
     <div class="form-group">
-            <label class="form-label">Last Name: </label><input asp-for="LastName" class="form-control" type="text" /> <br />
+            <label class="form-label">Last Name: </label><input asp-for="Customer.LastName" class="form-control" type="text" /> <br />
     </div>
       
     <div class="form-group">
-            <label class="form-label">Email Address: </label><input asp-for="Email" class="form-control" type="text" /> <br />
+            <label class="form-label">Email Address: </label><input asp-for="Customer.Email" class="form-control" type="text" /> <br />
     </div>
 
     <div class="form-group">
-            <label class="form-label">Phone number: </label><input asp-for="PhoneNumber" class="form-control" type="text" /> <br />
+            <label class="form-label">Phone number: </label><input asp-for="Customer.PhoneNumber" class="form-control" type="text" /> <br />
     </div>
 
     <div class="d-flex justify-content-between">
         <button class="btn btn-primary" >Clear</button>
-        <button class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 
 </form>
