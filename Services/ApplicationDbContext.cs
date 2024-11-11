@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using total_test_1.Models;
+using total_test_1.Models.Admin;
 
 namespace total_test_1.Services
 {

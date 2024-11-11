@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace total_test_1.Models;
+namespace total_test_1.Models.Reviews;
 
 public partial class ReviewsContext : DbContext
 {
