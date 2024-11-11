@@ -45,3 +45,47 @@ a {
     background-color: #333333;
     border: none;
 }
+
+/* Star Rating Code */
+
+.stars a {
+    display: inline-block;
+    padding-right: 4px;
+    text-decoration: none;
+    margin: 0;
+}
+
+    .stars a:after {
+        position: relative;
+        font-size: 18px;
+        font-family: 'FontAwesome', serif;
+        display: block;
+        content: "\f005";
+        color: #9e9e9e;
+    }
+
+span {
+    font-size: 0;
+    /* trick to remove inline-element's margin */
+}
+
+.stars a:hover ~ a:after {
+    color: #9e9e9e !important;
+}
+
+span.active a.active ~ a:after {
+    color: #9e9e9e;
+}
+
+span:hover a:after {
+    color: yellow !important;
+}
+
+span.active a:after,
+.stars a.active:after {
+    color: yellow;
+}
+
+.myrating {
+    display: none;
+}
