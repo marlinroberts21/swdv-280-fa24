@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using total_test_1.Models.Schedule;
 
 namespace total_test_1.Pages
 {
@@ -14,8 +15,9 @@ namespace total_test_1.Pages
         {
             _logger = logger;
         }
-        public void OnGet()
+        public RedirectToActionResult OnGet()
         {
+            return RedirectToAction("Schedule", "Admin");
         }
 
     }

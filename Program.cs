@@ -3,6 +3,7 @@ using total_test_1.Services;
 using Microsoft.AspNetCore.Identity;
 using total_test_1.Models.Admin;
 using total_test_1.Models.Reviews;
+using total_test_1.Models.Schedule;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +18,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDefaultIdentity<AdminUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<ReviewsContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("ReviewsConnection");
     options.UseSqlServer(connectionString);
 });
-
+builder.Services.AddDbContext<ScheduleContext>(options =>
+{
+	var connectionString = builder.Configuration.GetConnectionString("ScheduleConnection");
+	options.UseSqlServer(connectionString);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,5 +48,9 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
 
 app.Run();
