@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace total_test_1.Models;
+namespace total_test_1.Models.Schedule;
 
 public partial class ScheduleContext : DbContext
 {
@@ -24,7 +24,7 @@ public partial class ScheduleContext : DbContext
     public virtual DbSet<Time> Times { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("name=AppointmentConnection");
+        => optionsBuilder.UseSqlServer("name=ScheduleConnection");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
