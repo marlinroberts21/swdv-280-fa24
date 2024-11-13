@@ -27,7 +27,7 @@ namespace total_test_1.Controllers
 
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Confirmation", appointment);
+                return View(appointment);
             }
             else
             {
@@ -41,5 +41,6 @@ namespace total_test_1.Controllers
             return View("Confirmation", appointment);
         }
 
+        //RedirectToAction("Confirmation", appointment);
     }
 }
