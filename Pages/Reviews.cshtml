@@ -1,5 +1,4 @@
 ﻿@page
-@model total_test_1.Pages.ReviewsModel
 @{
     ViewData["Title"] = "Reviews";
 }
@@ -9,6 +8,27 @@
 <!-- Reviews Form -->
 <form>
     <div class="row">
+        <div class="starrating">
+            <p class="stars">
+                <label class="myrating">0</label>
+                <span>
+                    <a class="star-1" href="#">1</a>
+                    <a class="star-2" href="#">2</a>
+                    <a class="star-3" href="#">3</a>
+                    <a class="star-4" href="#">4</a>
+                    <a class="star-5" href="#">5</a>
+                </span>
+            </p>
+            <script>
+                $('.stars a').on('click', function () {
+                    $('.stars span, .stars a').removeClass('active');
+
+                    $(this).addClass('active');
+                    $('.stars span').addClass('active');
+                    $('.myrating').html($(this).text());
+                });
+            </script>
+        </div>
         <div class="col">
             <input type="text" class="form-control" placeholder="First name" aria-label="First name" required>
         </div>
