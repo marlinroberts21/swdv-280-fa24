@@ -25,16 +25,20 @@ namespace total_test_1.Controllers
             //appointmentViewer.Time = context.Times;
 
             List<AppointmentDisplay> appointmentViewer = new List<AppointmentDisplay>();
-            var customersAndAppointments = context.Appointments.Zip(context.Customers, (c, a) => new {Appointment = a, Customer = c});
             int i = 0;
-            foreach(var ca in customersAndAppointments)
+            foreach(Customer customer in context.Customers)
             {
-                if (ca.Appointment.CustomerId == ca.Customer.CustomerId)
+                foreach(Appointment appointment in context.Appointments)
                 {
-                    appointmentViewer[i].FirstName = ca.Customer.Customer.FirstName;
-                    appointmentViewer[i].LastName = ca.Customer.Customer.LastName;
+
+                
+                    if (appointment.CustomerId == customer.CustomerId)
+                    {
+                        appointmentViewer[i].FirstName = customer.FirstName;
+                        appointmentViewer[i].LastName = customer.LastName;
+                    }
+                    i++;
                 }
-                i++;
             }
             //foreach (Appointment appointment in context.Appointments)
             //    foreach (Customer customer in context.Customers)
