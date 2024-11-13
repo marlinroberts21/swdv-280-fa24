@@ -14,26 +14,23 @@
     <br />
 
 <!-- The form for scheduling an appointment -->
-<form asp-action="AddAppointment" method="post" id="appointmentForm" class="mx-auto w-50">
 
+<form asp-action="AddAppointment" method="post" id="appointmentForm" class="mx-auto w-50">
     <div class="d-flex flex-wrap justify-content-between">
             <div class="form-group">
-                <label class="form-label">Day</label> <input class="form-control" type="date" />
+                <label class="form-label" asp-for="Date"></label> <input class="form-control" type="date" asp-for="Date" />
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="times">Time: </label>
-                <select class="form-select" name="times" id="time">
+                <label class="form-label" asp-for="Time" for="times"></label>
+                <select class="form-select" name="times" id="time" asp-for="Time">
                     <option>10:00 AM</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="services">Type of Service:</label>
-                <select class="form-select" name="services" id="service">
-                    <option value="collision">Collision Repair</option>
-                    <option value="paint">Painting</option>
-                    <option value="specialtyPaint">Specialty Painting</option>
+                <label asp-for="CategoryId" class="form-label">Type of Service:</label>
+                <select asp-for="CategoryId" class="form-select">
                 </select> 
             </div>
     </div> <br />
@@ -63,7 +60,6 @@
         <button class="btn btn-primary" >Clear</button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-
 </form>
 
 </body>
