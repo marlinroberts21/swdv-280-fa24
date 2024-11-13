@@ -1,7 +1,8 @@
 ﻿@page
+@using total_test_1.Models.Schedule
 @model total_test_1.Pages.AdminModel
 @{
-    ViewData["Title"] = "Admin Page";
+    ViewBag.Title = "Admin";
 }
 
 <body>
@@ -17,6 +18,27 @@
 			</div>
 		</form>
 	</div>
+	<div class="row justify-content-center" style="color: #ffffff;">
+	<table class="table table-responsive text-white">
+		<tr>
+			<th class="p-2">First Name</th>
+			<th class="p-2">Last Name</th>
+			<th class="p-2">Email</th>
+			<th class="p-2">Phone Number</th>
+		</tr>
+		@{
+			foreach (Customer customer in ViewBag.appointmentView.Customer)
+			{
+				<tr>
+					<td class="p-2">@customer.FirstName</td>
+					<td class="p-2">@customer.LastName</td>
+					<td class="p-2">@customer.Email</td>
+					<td class="p-2">@customer.PhoneNumber</td>
+				</tr>
+			}
+		}
+        </table>
+    </div>
 	<div class="container d-flex justify-content-center mt-5">
 		<a href="#" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
 		<a class="ms-5 btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
