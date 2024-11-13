@@ -11,8 +11,9 @@ namespace total_test_1.Models.Admin
         public string Time {  get; set; }
         public string FirstName {  get; set; }
         public string LastName { get; set; }
-        public AppointmentDisplay()
+        public AppointmentDisplay(string time, string firstName, string lastName)
         {
+
         }
     }
 }

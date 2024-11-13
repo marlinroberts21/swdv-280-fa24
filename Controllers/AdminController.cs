@@ -34,6 +34,7 @@ namespace total_test_1.Controllers
                 
                     if (appointment.CustomerId == customer.CustomerId)
                     {
+                        appointmentViewer.Add()
                         appointmentViewer[i].FirstName = customer.FirstName;
                         appointmentViewer[i].LastName = customer.LastName;
                     }
