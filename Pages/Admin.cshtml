@@ -22,6 +22,7 @@
 	<div class="row justify-content-center" style="color: #ffffff;">
 	<table class="table table-responsive text-white">
 		<tr>
+			<th class="p-2">Time</th>
 			<th class="p-2">First Name</th>
 			<th class="p-2">Last Name</th>
 		</tr>
@@ -29,6 +30,7 @@
 			foreach (AppointmentDisplay appointment in ViewBag.appointmentViewer)
 			{
 				<tr>
+					<td class="p-2">@appointment.Time</td>
 					<td class="p-2">@appointment.FirstName</td>
 					<td class="p-2">@appointment.LastName</td>
 				</tr>

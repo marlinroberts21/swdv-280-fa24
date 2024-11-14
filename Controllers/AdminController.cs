@@ -26,20 +26,35 @@ namespace total_test_1.Controllers
 
             List<AppointmentDisplay> appointmentViewer = new List<AppointmentDisplay>();
             int i = 0;
-            foreach(Customer customer in context.Customers)
+			string? firstName = null;
+			string? lastName = null;
+			TimeOnly? theTime = null;
+			foreach (Customer customer in context.Customers)
             {
+				int j = 0;
                 foreach(Appointment appointment in context.Appointments)
                 {
+                    foreach (Time time in context.Times)
+                    {
 
                 
-                    if (appointment.CustomerId == customer.CustomerId)
+                    if (appointment.CustomerId == customer.CustomerId && appointment.TimeId == time.TimeId)
                     {
-                        appointmentViewer.Add()
-                        appointmentViewer[i].FirstName = customer.FirstName;
-                        appointmentViewer[i].LastName = customer.LastName;
+                        firstName = customer.FirstName;
+                        lastName = customer.LastName;
+                        theTime = time.Time1;
                     }
-                    i++;
+                    int k = 0;
+                                            
+                    k++;
+                    }
+                j++;
                 }
+            i++;
+                    appointmentViewer.Add(new AppointmentDisplay(theTime, firstName, lastName));
+                firstName = null;
+                lastName = null;
+                theTime = null;
             }
             //foreach (Appointment appointment in context.Appointments)
             //    foreach (Customer customer in context.Customers)
@@ -50,7 +65,7 @@ namespace total_test_1.Controllers
             //            appointmentViewer
             //}
 
-            ViewBag.appointmentView = appointmentViewer;
+            ViewBag.appointmentViewer = appointmentViewer;
             return View("../Admin");
         }
     }
