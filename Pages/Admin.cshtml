@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = "Admin";
 }
-
+[Authorize]
 <body>
 	<div class="text-center">
 		<h1 class="display-2">View Schedule - Admin</h1>
@@ -14,8 +14,17 @@
 	<div class="text-center container d-flex justify-content-center">
         <form>
 			<div class="mb-3">
-                <input type="date" class="form-control pe-4 ps-4" id="dateEntry"/>
-				<div class="form-text">Today - 10/16/24</div>
+				<input type="date" class="form-control pe-4 ps-4" id="dateEntry" onchange="redirectToSchedule()" value="@ViewBag.s" />
+
+				<script>
+					function redirectToSchedule() {
+						var selectedDate = document.getElementById("dateEntry").value;
+						var formattedDate = encodeURIComponent(selectedDate);
+						window.location.href = '/admin/schedule?selectedDate=' + formattedDate;
+					}
+				</script>
+
+				<div class="form-text">Today - @DateTime.Today.ToString("MM/dd/yy")</div>
 			</div>
 		</form>
 	</div>
