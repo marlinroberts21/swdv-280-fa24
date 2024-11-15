@@ -1,12 +1,18 @@
 @page
+@using total_test_1.Models.Reviews
 @model total_test_1.Pages.ReviewsModel
 @{
-    ViewData["Title"] = "Reviews";
+    ViewBag.Title = "Reviews";
 }
 
 <h1>Reviews Page</h1>
 <div width="auto">
     <div style="height:auto;width:auto;overflow:scroll;overflow-x:hidden;margin-left:auto;margin-right:auto;border:1px solid black; ">
+        @if (ViewBag.FirstName != null)
+        {
+            <h2>@ViewBag.FirstName @ViewBag.LastName</h2>
+            <p>@ViewBag.ReviewText</p>
+        }
         <h2>Tristan H.</h2>
         <h2>4/5</h2>
          <p>
@@ -39,11 +45,13 @@
 
         <h2>Terry A.</h2>
         <h2>5/5</h2>
-        <p>They were able to get my perfect custom wrap for cheaper than most shops in the area were going to charge me.</p>
+        <p>They were able to get my perfect custom wrap for cheaper than most shops in the area were going to charge me.</p> 
+
+        
     </div>
 </div>
 <!-- Reviews Form -->
-<form asp-action="Add" method="post">
+<form asp-controller="Reviews" asp-action="Add" method="post">
     <div class="row">
         <div class="starrating">
             <p class="stars">
@@ -67,15 +75,15 @@
             </script>
         </div>
         <div class="col">
-            <input type="text" name="firstName" class="form-control" placeholder="First name" aria-label="First name" required>
+            <input type="text" name="firstName" class="form-control" placeholder="First name" aria-label="First name" value="@ViewBag.FirstName" required>
         </div>
         <div class="col">
-            <input type="text" name="lastName" class="form-control" placeholder="Last name" aria-label="Last name">
+            <input type="text" name="lastName" class="form-control" placeholder="Last name" aria-label="Last name" value="@ViewBag.LastName">
         </div>
         <!-- Text box -->
         <div>
             <label for="reviewText" class="form-label"></label>
-            <textarea name="reviewText" class="form-control" placeholder="Write review here" id="reviewText" style="height: 100px"></textarea>
+            <textarea name="reviewText" class="form-control" placeholder="Write review here" id="reviewText" style="height: 100px">@ViewBag.ReviewText</textarea>
         </div>
         <!-- Button -->
         <div class="text-center mt-5">
