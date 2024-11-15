@@ -42,7 +42,7 @@
 </div>
 
 <!-- Reviews Form -->
-<form>
+<form asp-action="Add" method="post">
     <div class="row">
         <div class="starrating">
             <p class="stars">
@@ -66,15 +66,15 @@
             </script>
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="First name" aria-label="First name" required>
+            <input type="text" name="firstName" class="form-control" placeholder="First name" aria-label="First name" required>
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            <input type="text" name="lastName" class="form-control" placeholder="Last name" aria-label="Last name">
         </div>
         <!-- Text box -->
         <div>
             <label for="reviewText" class="form-label"></label>
-            <textarea class="form-control" placeholder="Write review here" id="reviewText" style="height: 100px"></textarea>
+            <textarea name="reviewText" class="form-control" placeholder="Write review here" id="reviewText" style="height: 100px"></textarea>
         </div>
         <!-- Button -->
         <div class="text-center mt-5">
