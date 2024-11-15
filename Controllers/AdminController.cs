@@ -26,12 +26,12 @@ namespace total_test_1.Controllers
             if (selectedDate == null)
             {
                 dateOnly = DateOnly.Parse(DateTime.Today.ToString("MM/dd/yyyy"));
-                ViewBag.s = DateTime.Today.ToString("yyyy-MM-dd");
+                ViewBag.selectedDate = DateTime.Today.ToString("yyyy-MM-dd");
 			}
             else 
             {
 				dateOnly = DateOnly.Parse(selectedDate);
-                ViewBag.s = selectedDate;
+                ViewBag.selectedDate = selectedDate;
 			}
 			var appointmentViewer = (
                                             from customer in context.Customers
