@@ -1,17 +1,18 @@
 @page
-@using total_test_1.Models.Reviews
+
 @model total_test_1.Pages.ReviewsModel
 @{
-    ViewBag.Title = "Reviews";
+    ViewData["Title"] = "Reviews";
 }
+
 
 <h1>Reviews Page</h1>
 <div width="auto">
     <div style="max-height:500px;width:auto;overflow:scroll;overflow-x:hidden;margin-left:auto;margin-right:auto;border:1px solid black; ">
-        @if (ViewBag.FirstName != null)
+        @foreach (var review in Model.Reviews)
         {
-            <h2>@ViewBag.FirstName @ViewBag.LastName</h2>
-            <p>@ViewBag.ReviewText</p>
+            <h2>@review.Reviewer?.FirstName @review.Reviewer?.LastName</h2>
+            <p>@review.ReviewText</p>
         }
         <h2>Tristan H.</h2>
         <h2>4/5</h2>
@@ -51,7 +52,7 @@
     </div>
 </div>
 <!-- Reviews Form -->
-<form asp-controller="Reviews" asp-action="Add" method="post">
+<form method="post">
     <div class="row">
         <div class="starrating">
             <p class="stars">
@@ -63,7 +64,7 @@
                     <a class="star-4" href="?=4">4</a>
                     <a class="star-5" href="?=5">5</a>
                 </span>
-            </p>
+            </p> 
             <script>
                 $('.stars a').on('click', function () {
                     $('.stars span, .stars a').removeClass('active');
@@ -75,19 +76,21 @@
             </script>
         </div>
         <div class="col">
-            <input type="text" name="firstName" class="form-control" placeholder="First name" aria-label="First name" value="@ViewBag.FirstName" required>
+            <label for="firstName" class="form-label"></label>
+            <input asp-for="NewReviewer.FirstName" class="form-control" placeholder="First name" aria-label="First name" id="firstName" required>
         </div>
         <div class="col">
-            <input type="text" name="lastName" class="form-control" placeholder="Last name" aria-label="Last name" value="@ViewBag.LastName">
+            <label for="lastName" class="form-label"></label>
+            <input asp-for="NewReviewer.LastName" class="form-control" placeholder="Last name" aria-label="Last name" id="lastName">
         </div>
         <!-- Text box -->
         <div>
             <label for="reviewText" class="form-label"></label>
-            <textarea name="reviewText" class="form-control" placeholder="Write review here" id="reviewText" style="height: 100px">@ViewBag.ReviewText</textarea>
+            <textarea asp-for="NewReview.ReviewText" class="form-control" placeholder="Write review here" id="reviewText" style="height: 100px"></textarea>
         </div>
         <!-- Button -->
         <div class="text-center mt-5">
-            <button type="submit" class="btn btn-primary" style="width: 40%">Submit</button> 
+            <button type="submit" class="btn btn-primary" formaction="@Url.Page("/Reviews", "AddReview")" style="width: 40%">Submit</button> 
         </div>
     </div>
 </form> 
