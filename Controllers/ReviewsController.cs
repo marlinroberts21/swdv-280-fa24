@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using total_test_1.Models;
 using total_test_1.Models.Reviews;
 
@@ -15,13 +16,14 @@ namespace total_test_1.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            return RedirectToAction("Reviews");
         }
 
         // adds reviews
         [HttpPost]
         public IActionResult Add(string firstName, string lastName, string reviewText)
-        { 
+        {  
             if(ModelState.IsValid)
             {
                 var reviewer = new Reviewer
@@ -45,7 +47,11 @@ namespace total_test_1.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View();
+            ViewBag.FirstName = firstName;
+            ViewBag.LastName = lastName;
+            ViewBag.ReviewText = reviewText;
+
+            return View("../reviews");
 
         }
 
