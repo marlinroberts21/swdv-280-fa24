@@ -6,7 +6,7 @@ using total_test_1.Models.Reviews;
 namespace total_test_1.Pages
 {
     public class ReviewsModel : PageModel
-    { 
+    {
         private readonly ReviewsContext _context;
         public ReviewsModel(ReviewsContext context)
         {
@@ -21,7 +21,7 @@ namespace total_test_1.Pages
         public Reviewer NewReviewer { get; set; } = new Reviewer();
 
         //public Rating NewRating { get; set; } = new Rating();
-        public void OnGet()
+        public void OnGet(string? rate)
         { 
             Reviews = _context.Reviews 
                 .Include(r => r.Reviewer)
@@ -45,7 +45,7 @@ namespace total_test_1.Pages
                 //NewReview.RatingId = NewReview.RatingId;
 
                 _context.Reviews.Add(NewReview);
-                _context.SaveChanges() ;
+                _context.SaveChanges();
 
                 return RedirectToPage("/Reviews");
             } 
