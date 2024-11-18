@@ -1,10 +1,11 @@
 ﻿@page
 @using total_test_1.Models.Schedule
+@using total_test_1.Models.Admin
 @model total_test_1.Pages.AdminModel
 @{
     ViewBag.Title = "Admin";
 }
-
+[Authorize]
 <body>
 	<div class="text-center">
 		<h1 class="display-2">Appointment Manager - Admin</h1>
@@ -15,6 +16,17 @@
         <form>
 			<div class="mb-3">
                 <input type="date" class="form-control pe-4 ps-4" id="dateEntry"/>
+				<input type="date" class="form-control pe-4 ps-4" id="dateEntry" onchange="redirectToSchedule()" value="@ViewBag.selectedDate" />
+
+				<script>
+					function redirectToSchedule() {
+						var selectedDate = document.getElementById("dateEntry").value;
+						var formattedDate = encodeURIComponent(selectedDate);
+						window.location.href = '/admin/schedule?selectedDate=' + formattedDate;
+					}
+				</script>
+
+				<div class="form-text">Today - @DateTime.Today.ToString("MM/dd/yy")</div>
 			</div>
 		</form>
 	</div>
@@ -24,15 +36,17 @@
 	<div class="row justify-content-center" style="color: #ffffff;">
 	<table class="table table-responsive text-white">
 		<tr>
+			<th class="p-2">Time</th>
 			<th class="p-2">First Name</th>
 			<th class="p-2">Last Name</th>
 		</tr>
 		@{
-			foreach (Appointment appointment in ViewBag.appointmentView.Appointment)
+			foreach (AppointmentDisplay appointment in ViewBag.appointmentViewer)
 			{
 				<tr>
 					<td class="p-2">@appointment.Time</td>
-					<td class="p-2">@appointment.Customer</td>
+					<td class="p-2">@appointment.FirstName</td>
+					<td class="p-2">@appointment.LastName</td>
 				</tr>
 			}
 		}

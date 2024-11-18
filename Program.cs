@@ -18,7 +18,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDefaultIdentity<AdminUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
 
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ScheduleContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("AppointmentConnection");
+});
 
 builder.Services.AddDbContext<ReviewsContext>(options =>
 {
