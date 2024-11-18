@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 
+
 namespace total_test_1.Pages
 {
     public class AppointmentsModel : PageModel

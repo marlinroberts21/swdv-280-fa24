@@ -15,7 +15,7 @@ namespace total_test_1.Pages
         {
             _logger = logger;
         }
-        public async Task<IActionResult> OnGet()
+        public RedirectToActionResult OnGet()
         {
             return RedirectToAction("Schedule", "Admin");
         }

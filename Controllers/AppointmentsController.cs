@@ -10,11 +10,9 @@ namespace total_test_1.Controllers
         private ScheduleContext _context;
 
         public AppointmentsController(ScheduleContext context)
+
         {
             _context = context;
         }
-
-
-        //RedirectToAction("Confirmation", appointment);
     }
 }
