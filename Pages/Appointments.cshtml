@@ -15,7 +15,7 @@
 
 <!-- The form for scheduling an appointment -->
 
-<form asp-action="AddAppointment" method="post" id="appointmentForm" class="mx-auto w-50">
+<form asp-controller="Appointment" asp-action="AddAppointment" method="post" id="appointmentForm" class="mx-auto w-50">
     <div class="d-flex flex-wrap justify-content-between">
             <div class="form-group">
                 <label class="form-label" asp-for="Date"></label> <input class="form-control" type="date" asp-for="Date" />
@@ -57,7 +57,7 @@
         <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
 
     <div class="d-flex justify-content-between">
-        <button class="btn btn-primary" >Clear</button>
+        <button type="reset" class="btn btn-primary" >Clear</button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
