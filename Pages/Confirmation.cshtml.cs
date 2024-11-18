@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
@@ -47,6 +48,10 @@ namespace total_test_1.Pages
             Phone = phone;
 
             _logger.LogInformation("Appointment confirmed for {FirstName} {LastName} on {AppointmentDate} at {AppointmentTime}", FirstName, LastName, AppointmentDate, AppointmentTime);
+        }
+        
+        public void OnGet()
+        {
         }
     }
 }

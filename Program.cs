@@ -20,6 +20,11 @@ builder.Services.AddDefaultIdentity<AdminUser>(options => options.SignIn.Require
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<ScheduleContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("AppointmentConnection");
+});
+
 builder.Services.AddDbContext<ReviewsContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("ReviewsConnection");

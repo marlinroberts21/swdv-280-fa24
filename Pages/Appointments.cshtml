@@ -1,64 +1,78 @@
 ﻿@page
-@model AppointmentsModel
+@model total_test_1.Pages.AppointmentsModel
 
 @{
     ViewData["Title"] = "Appointments Page";
+    var availableTimes = Model.TimeOptions ?? new List<SelectListItem>();
+    var availableCategories = Model.CategoryOptions ?? new List<SelectListItem>();
 }
 
 <head><title>Appointments</title></head>
 <body>
-    <h1 class="text-center">Schedule an Appointment!</h1>
+    <h1 class="text-center">Schedule an Appointment! @availableTimes.Count @availableCategories.Count</h1>
     <br />
 
     <p class="text-center">Please fill out the form below with your information and choose an available appointment time.</p>
     <br />
 
-<!-- The form for scheduling an appointment -->
-<form id="appointmentForm" class="mx-auto w-50">
 
+<!-- The form for scheduling an appointment -->
+
+<form asp-controller="Appointments" asp-action="Appointments" method="post" id="appointmentForm" class="mx-auto w-50">
     <div class="d-flex flex-wrap justify-content-between">
             <div class="form-group">
-                <label class="form-label">Day</label> <input class="form-control" type="date" />
+                <label class="form-label"></label> <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" asp-for="SelectedDate" />
+                <span asp-validation-for="SelectedDate" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="times">Time: </label>
-                <select class="form-select" name="times" id="time">
-                    <option>10:00 AM</option>
+                <label class="form-label" ></label>
+                <select class="form-select" id="time" asp-for="SelectedTimeId">
+                    @foreach(var time in availableTimes)
+                    {
+                        <option value="@time.Value">@time.Text</option>
+                    }
                 </select>
+                <span asp-validation-for="SelectedTimeId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="services">Type of Service:</label>
-                <select class="form-select" name="services" id="service">
-                    <option value="collision">Collision Repair</option>
-                    <option value="paint">Painting</option>
-                    <option value="specialtyPaint">Specialty Painting</option>
+                <label class="form-label">Type of Service:</label>
+                <select asp-for="CategoryId" class="form-select">
+                    @foreach (var category in availableCategories)
+                    {
+                        <option value="@category.Value">@category.Text</option>
+                    }
                 </select> 
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
     </div> <br />
 
+   
     <div class="form-group">
-        <label class="form-label">First Name: </label><input class="form-control" type="text" /> <br />
+        <label class="form-label">First Name: </label><input asp-for="FirstName" class="form-control" type="text" /> <br />
     </div>
+        <span asp-validation-for="FirstName" class="text-danger"></span>
 
     <div class="form-group">
-        <label class="form-label">Last Name: </label><input class="form-control" type="text" /> <br />
+            <label class="form-label">Last Name: </label><input asp-for="LastName" class="form-control" type="text" /> <br />
     </div>
+        <span asp-validation-for="LastName" class="text-danger"></span>
       
     <div class="form-group">
-        <label class="form-label">Email Address: </label><input class="form-control" type="text" /> <br />
+            <label class="form-label">Email Address: </label><input asp-for="Email" class="form-control" type="text" /> <br />
     </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
 
     <div class="form-group">
-        <label class="form-label">Phone number: </label><input class="form-control" type="text" /> <br />
+            <label class="form-label">Phone number: </label><input asp-for="PhoneNumber" class="form-control" type="text" /> <br />
     </div>
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
 
     <div class="d-flex justify-content-between">
         <button class="btn btn-primary" >Clear</button>
-        <button class="btn btn-primary" asp-area="" asp-page="/Confirmation">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-
 </form>
 
 </body>

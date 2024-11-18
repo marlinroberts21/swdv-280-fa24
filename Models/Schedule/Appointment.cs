@@ -11,12 +11,16 @@ public partial class Appointment
     [Key]
     public int AppointmentId { get; set; }
 
+    [Required]
     public int CustomerId { get; set; }
 
+    [Required]
     public int CategoryId { get; set; }
 
+    [Required]
     public int TimeId { get; set; }
 
+    [Required]
     public DateOnly Date { get; set; }
 
     [ForeignKey("CategoryId")]
