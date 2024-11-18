@@ -20,28 +20,27 @@
 	</div>
 	<!-- END Date Picker -->
 
-	<!-- START Add & Delete Buttons -->
+	<!-- START Appointments Display -->
 	<div class="row justify-content-center" style="color: #ffffff;">
 	<table class="table table-responsive text-white">
 		<tr>
 			<th class="p-2">First Name</th>
 			<th class="p-2">Last Name</th>
-			<th class="p-2">Email</th>
-			<th class="p-2">Phone Number</th>
 		</tr>
 		@{
-			foreach (Customer customer in ViewBag.appointmentView.Customer)
+			foreach (Appointment appointment in ViewBag.appointmentView.Appointment)
 			{
 				<tr>
-					<td class="p-2">@customer.FirstName</td>
-					<td class="p-2">@customer.LastName</td>
-					<td class="p-2">@customer.Email</td>
-					<td class="p-2">@customer.PhoneNumber</td>
+					<td class="p-2">@appointment.Time</td>
+					<td class="p-2">@appointment.Customer</td>
 				</tr>
 			}
 		}
         </table>
     </div>
+	<!-- END Appointments Display -->
+
+	<!-- START Add & Delete Buttons -->
 	<div class="container d-flex justify-content-center mt-5">
 		<a href="#" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
 		<a class="ms-5 btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
