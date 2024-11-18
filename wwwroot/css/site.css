@@ -69,7 +69,7 @@ a {
         color: #9e9e9e;
     }
 
-span {
+.marginRemover {
     font-size: 0;
     /* trick to remove inline-element's margin */
 }
