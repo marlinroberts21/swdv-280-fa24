@@ -34,14 +34,14 @@ namespace total_test_1.Controllers
                 ViewBag.selectedDate = selectedDate;
 			}
 			var appointmentViewer = (
-                                            from customer in context.Customers
-                                            join appointment in context.Appointments
-                                                on customer.CustomerId equals appointment.CustomerId
-                                            join time in context.Times
-                                                on appointment.TimeId equals time.TimeId
-                                            where appointment.Date == dateOnly
-                                            select new AppointmentDisplay(time.Time1, customer.FirstName, customer.LastName)
-                                        );
+                                        from customer in context.Customers
+                                        join appointment in context.Appointments
+                                            on customer.CustomerId equals appointment.CustomerId
+                                        join time in context.Times
+                                            on appointment.TimeId equals time.TimeId
+                                        where appointment.Date == dateOnly
+                                        select new AppointmentDisplay(time.Time1, customer.FirstName, customer.LastName)
+                                    );
            
                 ViewBag.appointmentViewer = appointmentViewer;
                 
