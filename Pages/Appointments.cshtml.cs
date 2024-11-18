@@ -1,7 +1,8 @@
 
 using System.ComponentModel.DataAnnotations;
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using total_test_1.Models.Schedule;
 
 
 namespace total_test_1.Pages

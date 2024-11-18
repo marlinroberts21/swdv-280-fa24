@@ -1,26 +1,26 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
-  background-color: #333333;
-  color: #FFFFFF;
+    margin-bottom: 60px;
+    background-color: #333333;
+    color: #FFFFFF;
 }
 
 nav {
@@ -32,11 +32,10 @@ a {
 }
 
 .nav-link {
-    font-size: 20px;
+    font-size: 21px;
 }
 
-#appointmentForm{
-    
+#appointmentForm {
 }
 
 .aboutbanner {
@@ -51,12 +50,59 @@ a {
     border: none;
 }
 
+
+/* Star Rating Code */
+
+.stars a {
+    display: inline-block;
+    padding-right: 4px;
+    text-decoration: none;
+    margin: 0;
+}
+
+    .stars a:after {
+        position: relative;
+        font-size: 18px;
+        font-family: 'FontAwesome', serif;
+        display: block;
+        content: "\f005";
+        color: #9e9e9e;
+    }
+
+.marginRemover {
+    font-size: 0;
+    /* trick to remove inline-element's margin */
+}
+
+.stars a:hover ~ a:after {
+    color: #9e9e9e !important;
+}
+
+span.active a.active ~ a:after {
+    color: #9e9e9e;
+}
+
+span:hover a:after {
+    color: yellow !important;
+}
+
+span.active a:after,
+.stars a.active:after {
+    color: yellow;
+}
+
+.myrating {
+    display: none;
+}
+
+/* End Star code */
+
 .navbar-nav {
     flex-wrap: wrap;
 }
 
 .nav-item {
-    margin: 0 4rem; 
+    margin: 0 3.3rem;
 }
 
 footer {
@@ -68,4 +114,24 @@ footer {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+@media (max-width: 576px) {
+    .navbar-nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+        .navbar-nav .nav-item {
+            margin: 10px 0;
+        }
+
+    .btn-link {
+        margin-left: 195px;
+    }
+}
+
+
+.nav-link:hover {
+    text-decoration: underline;
 }
