@@ -14,32 +14,6 @@ namespace total_test_1.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
-        {   
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddApointment(Appointment appointment)
-        {
-            ViewBag.Categories = _context.Categories.ToList();
-
-            if (ModelState.IsValid)
-            {
-                return View(appointment);
-            }
-            else
-            {
-                return View(appointment);
-            }
-        }
-
-        [HttpGet]
-        public IActionResult Confirmation(Appointment appointment) 
-        {
-            return View("Confirmation", appointment);
-        }
 
         //RedirectToAction("Confirmation", appointment);
     }
