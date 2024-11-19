@@ -18,7 +18,7 @@
 
 <!-- The form for scheduling an appointment -->
 
-<form asp-controller="Appointments" asp-action="Appointments" method="post" id="appointmentForm" class="mx-auto w-50">
+<form asp-page-handler="Submit" method="post" id="appointmentForm" class="mx-auto w-50">
     <div class="d-flex flex-wrap justify-content-between">
             <div class="form-group">
                 <label class="form-label"></label> <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" asp-for="SelectedDate" />
@@ -50,24 +50,27 @@
 
    
     <div class="form-group">
-        <label class="form-label">First Name: </label><input asp-for="FirstName" class="form-control" type="text" /> <br />
+            <label class="form-label">First Name: </label><input asp-for="FirstName" class="form-control" type="text" /> <br />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
-        <span asp-validation-for="FirstName" class="text-danger"></span>
+        
 
     <div class="form-group">
             <label class="form-label">Last Name: </label><input asp-for="LastName" class="form-control" type="text" /> <br />
+            <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
-        <span asp-validation-for="LastName" class="text-danger"></span>
       
     <div class="form-group">
             <label class="form-label">Email Address: </label><input asp-for="Email" class="form-control" type="text" /> <br />
+            <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-        <span asp-validation-for="Email" class="text-danger"></span>
+        
 
     <div class="form-group">
             <label class="form-label">Phone number: </label><input asp-for="PhoneNumber" class="form-control" type="text" /> <br />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
     </div>
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        
 
     <div class="d-flex justify-content-between">
         <button class="btn btn-primary" >Clear</button>

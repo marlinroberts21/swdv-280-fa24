@@ -16,13 +16,13 @@
     <div class="mt-4">
         <h3>Your Appointment Details:</h3>
         <ul class="list-group">
-            <li class="list-group-item"><strong>First Name:</strong> @ViewBag.FirstName</li>
-            <li class="list-group-item"><strong>Last Name:</strong> @ViewBag.LastName</li>
-            <li class="list-group-item"><strong>Email:</strong> @ViewBag.Email</li>
-            <li class="list-group-item"><strong>Phone:</strong> @ViewBag.Phone</li>
-            <li class="list-group-item"><strong>Date:</strong> @ViewBag.AppointmentDate</li>
-            <li class="list-group-item"><strong>Time:</strong> @ViewBag.AppointmentTime</li>
-            <li class="list-group-item"><strong>Service Type:</strong> @ViewBag.ServiceType</li>
+            <li class="list-group-item"><strong>First Name:</strong> @Model.Appointment?.Customer?.FirstName</li>
+            <li class="list-group-item"><strong>Last Name:</strong> @Model.Appointment?.Customer?.LastName</li>
+            <li class="list-group-item"><strong>Email:</strong> @Model.Appointment?.Customer?.Email</li>
+            <li class="list-group-item"><strong>Phone:</strong> @Model.Appointment?.Customer?.PhoneNumber</li>
+            <li class="list-group-item"><strong>Date:</strong> @Model.Appointment?.Date.ToString()</li>
+            <li class="list-group-item"><strong>Time:</strong> @Model.Appointment?.Time?.Time1</li>
+            <li class="list-group-item"><strong>Service Type:</strong> @Model.Appointment?.Category?.Category1</li>
         </ul>
     </div>
 

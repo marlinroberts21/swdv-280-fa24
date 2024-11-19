@@ -27,14 +27,14 @@ public partial class Customer
 
     [StringLength(255)]
     [Unicode(false)]
-    [Required(ErrorMessage = "Please enter a Email.")]
-    [RegularExpression("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$\"",
-        ErrorMessage = "Incorrect email formatting.")]
+    //[Required(ErrorMessage = "Please enter a Email.")]
+    //[RegularExpression("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$\"",
+    //    ErrorMessage = "Incorrect email formatting.")]
     public string Email { get; set; } = null!;
 
-    [Required(ErrorMessage = "Please enter a Phone Number.")]
-    [RegularExpression("^(?([0-9]{3}))?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$",
-        ErrorMessage = "Incorrect phone number formatting.")]
+    //[Required(ErrorMessage = "Please enter a Phone Number.")]
+    //[RegularExpression("^(?([0-9]{3}))?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$",
+    //    ErrorMessage = "Incorrect phone number formatting.")]
     public int PhoneNumber { get; set; }
 
     [InverseProperty("Customer")]
