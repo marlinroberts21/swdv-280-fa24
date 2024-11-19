@@ -12,6 +12,8 @@ public partial class Rating
     public int RatingId { get; set; }
 
     [Column("Rating")]
+
+    [Range(1, 5, ErrorMessage ="Rating must be 1 through 5")]
     public int Rating1 { get; set; }
 
     [InverseProperty("Rating")]

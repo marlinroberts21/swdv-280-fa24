@@ -20,9 +20,11 @@ namespace total_test_1.Pages
         [BindProperty]
         public Reviewer NewReviewer { get; set; } = new Reviewer();
 
+        
         //public Rating NewRating { get; set; } = new Rating();
         public void OnGet()
-        { 
+        {
+            
             Reviews = _context.Reviews 
                 .Include(r => r.Reviewer)
                 //.Include(r => r.Rating)
@@ -32,17 +34,13 @@ namespace total_test_1.Pages
 
         public IActionResult OnPostAddReview()
         {
-            if (ModelState.IsValid)
-            {
+            if  (ModelState.IsValid )
+            {  
+                
                 _context.Reviewers.Add(NewReviewer);
                 _context.SaveChanges();
 
-                // adds rating
-                //_context.Ratings.Add(NewRating);
-                //_context.SaveChanges();
-
-                NewReview.ReviewerId = NewReviewer.ReviewerId;
-                //NewReview.RatingId = NewReview.RatingId;
+              
 
                 _context.Reviews.Add(NewReview);
                 _context.SaveChanges() ;
