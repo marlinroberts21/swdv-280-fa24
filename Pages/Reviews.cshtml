@@ -58,11 +58,11 @@
             <p class="stars">
                 <label class="myrating">0</label>
                 <span class="marginRemover">
-                    <a class="star-1" asp-for="NewReview.RatingId" href="javascript:star1();">1</a>
-                    <a class="star-2" asp-for="NewReview.RatingId" href="javascript:star2();">2</a>
-                    <a class="star-3" asp-for="NewReview.RatingId" href="javascript:star3();">3</a>
-                    <a class="star-4" asp-for="NewReview.RatingId" href="javascript:star4();">4</a>
-                    <a class="star-5" asp-for="NewReview.RatingId" href="javascript:star5();">5</a>
+                    <a class="star-1" href="">1</a>
+                    <a class="star-2" href="">2</a>
+                    <a class="star-3" href="">3</a>
+                    <a class="star-4" href="">4</a>
+                    <a class="star-5" href="">5</a>
                 </span>
             </p> 
             <%=ViewData["thiss"]%>
@@ -74,22 +74,6 @@
                     $('.stars span').addClass('active');
                     $('.myrating').html($(this).text());
                 });
-                function star1() 
-                {
-                    ViewData["thiss"] = 1;
-                }
-                function star2() {
-                    ViewData["thiss"] = 2;
-                }
-                function star3() {
-                    ViewData["thiss"] = 3;
-                }
-                function star4() {
-                    ViewData["thiss"] = 4;
-                }
-                function star5() {
-                    ViewData["thiss"] = 5;
-                }
             </script>
         </div>
         <div class="col">
@@ -107,7 +91,7 @@
         </div>
         <!-- Button -->
         <div class="text-center mt-5">
-            <button type="submit" class="btn btn-primary" formaction="@Url.Page("/Reviews", "AddReview")" style="width: 40%" >Submit</button> 
+            <button type="submit" class="btn btn-primary" formaction="@Url.Page("/Reviews", "AddReview")" style="width: 40%">Submit</button> 
         </div>
     </div>
 </form> 

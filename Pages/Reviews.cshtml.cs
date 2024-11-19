@@ -26,9 +26,7 @@ namespace total_test_1.Pages
             Reviews = _context.Reviews 
                 .Include(r => r.Reviewer)
                 //.Include(r => r.Rating)
-                .ToList();
-            ViewData["thiss"] = null;
-            
+                .ToList();      
         } 
 
         public IActionResult OnPostAddReview()
@@ -43,15 +41,6 @@ namespace total_test_1.Pages
                 //_context.SaveChanges();
 
                 NewReview.ReviewerId = NewReviewer.ReviewerId;
-
-                if (ViewData["thiss"] != null)
-                {
-                    NewReview.RatingId = Int32.Parse(ViewData["thiss"].ToString());
-                }
-                else
-                {
-                    NewReview.RatingId = 1;
-                }
                 //NewReview.RatingId = NewReview.RatingId;
 
                 _context.Reviews.Add(NewReview);
