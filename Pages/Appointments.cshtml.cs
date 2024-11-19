@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using total_test_1.Models.Schedule;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 
 
@@ -66,27 +67,32 @@ namespace total_test_1.Pages
         {
             // Load available times based on selected date only (no category filtering)
             TimeOptions = await GetAvailableTimes(SelectedDate);
+            CategoryOptions = await _context.Categories.Select(c => new SelectListItem
+            {
+                Value = c.CategoryId.ToString(),
+                Text = c.Category1
+            })
+            .ToListAsync();
             return Page();
         }
 
         public async Task<IActionResult> OnPostSubmitAsync()
         {
-            // Ensure the time is still available (double-check for any possible race conditions)
-            var isAlreadyBooked = await _context.Appointments
-                .AnyAsync(a => a.Date == SelectedDate && a.TimeId == SelectedTimeId);
+            //// Ensure the time is still available (double-check for any possible race conditions)
+            //var isAlreadyBooked = await _context.Appointments
+            //    .AnyAsync(a => a.Date == SelectedDate && a.TimeId == SelectedTimeId);
 
-            if (isAlreadyBooked)
-            {
-                ModelState.AddModelError("", "The selected time slot is no longer available. Please choose another time.");
-                return Page();
-            }
+            //if (isAlreadyBooked)
+            //{
+            //    ModelState.AddModelError("", "The selected time slot is no longer available. Please choose another time.");
+            //    return Page();
+            //}
 
             SelectedTimeId = 1;
 
             // Create the new appointment
             var appointment = new Appointment
             { 
-
                 Date = SelectedDate,
                 TimeId = SelectedTimeId,
                 CategoryId = CategoryId,
@@ -99,8 +105,12 @@ namespace total_test_1.Pages
                 }
             };
 
-            return RedirectToAction("Index", "Home");
+            appointment.Time = await _context.Times.FindAsync(SelectedTimeId);
+            appointment.Category = await _context.Categories.FindAsync(CategoryId);
 
+            TempData["Appointment"] = JsonSerializer.Serialize(appointment);
+
+            return RedirectToPage("Confirmation");
         }
 
         private async Task<List<SelectListItem>> GetAvailableTimes(DateOnly date)
@@ -119,6 +129,5 @@ namespace total_test_1.Pages
             })
             .ToListAsync();
         }
-
     }
 }
