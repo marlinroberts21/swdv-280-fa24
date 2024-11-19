@@ -26,7 +26,8 @@ namespace total_test_1.Pages
             Reviews = _context.Reviews 
                 .Include(r => r.Reviewer)
                 //.Include(r => r.Rating)
-                .ToList();      
+                .ToList(); 
+            
         } 
 
         public IActionResult OnPostAddReview()
