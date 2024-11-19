@@ -74,8 +74,6 @@ namespace total_test_1.Controllers
             {
 				ViewBag.fullDisplay = fullDisplay;
 			}
-            
-            expandedAppointment.ToString();
 
 			var appointmentViewer = (
 							from customer in context.Customers
