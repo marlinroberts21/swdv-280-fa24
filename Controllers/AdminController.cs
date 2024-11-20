@@ -68,15 +68,13 @@ namespace total_test_1.Controllers
                 join category in context.Categories
                     on appointment.CategoryId equals category.CategoryId
                 where appointment.AppointmentId == intId
-                select new FullDisplay(appointment.Date, time.Time1, customer.FirstName, customer.LastName, category.Category1, customer.Email, customer.PhoneNumber)
+                select new FullDisplay(appointment.AppointmentId, appointment.Date, time.Time1, customer.FirstName, customer.LastName, category.Category1, customer.Email, customer.PhoneNumber)
                 );
             foreach (FullDisplay fullDisplay in expandedAppointment)
             {
 				ViewBag.fullDisplay = fullDisplay;
 			}
             
-            expandedAppointment.ToString();
-
 			var appointmentViewer = (
 							from customer in context.Customers
 							join appointment in context.Appointments
