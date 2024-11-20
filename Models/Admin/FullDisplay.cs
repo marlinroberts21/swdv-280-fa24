@@ -2,6 +2,8 @@
 {
 	public class FullDisplay
 	{
+		public int AppointmentId { get; set; }
+
 		public DateOnly Date { get; set; }
 		public TimeOnly Time { get; set; }
 
@@ -16,8 +18,10 @@
 		public string Email { get; set; }
 		public int Phone { get; set; }
 
-        public FullDisplay(DateOnly date, TimeOnly time, string firstName, string lastName, string category, string email, int phone)
-        {
+        public FullDisplay(int appointmentId, DateOnly date, TimeOnly time, string firstName, string lastName, string category, string email, int phone)
+		{
+			AppointmentId = appointmentId;
+
 			Date = date;
 			Time = time;
 
@@ -28,6 +32,6 @@
 
 			Email = email;
 			Phone = phone;
-        }
-    }
+		}
+	}
 }
