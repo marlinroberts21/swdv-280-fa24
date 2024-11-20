@@ -6,14 +6,50 @@
 }
 
 
-<h1>Reviews Page</h1>
+<h1>
+    Reviews Page
+</h1>
+<h2>
+    Average Rating: 
+    <span class="star-rating" style="margin-left: 20px;">
+        @for (int i = 1; i <= 5; i++)
+        {
+            if (i <= Math.Round(Model.AverageRating)) // Round the average rating
+            {
+                <span class="filled-star">&#9733;</span> <!-- Filled Star -->
+            }
+            else
+            {
+                <span class="empty-star">&#9734;</span> <!-- Empty Star -->
+            }
+        }
+    </span>
+</h2>
+
 <div width="auto">
     <div style="max-height:500px;width:auto;overflow:scroll;overflow-x:hidden;margin-left:auto;margin-right:auto;border:1px solid black; ">
-        @foreach (var review in Model.Reviews)
-        {
-            <h2>@review.Reviewer?.FirstName @review.Reviewer?.LastName</h2>
+    @foreach (var review in Model.Reviews)
+    {
+        <div class="review-item">
+            <h2>
+                @review.Reviewer?.FirstName @review.Reviewer?.LastName 
+                <span class="star-rating">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        if (i <= review.Rating?.Ratings)
+                        {
+                            <span class="filled-star">&#9733;</span> <!-- Filled Star -->
+                        }
+                        else
+                        {
+                            <span class="empty-star">&#9734;</span> <!-- Empty Star -->
+                        }
+                    }
+                </span>
+            </h2>
             <p>@review.ReviewText</p>
-        }
+        </div>
+}
         <h2>Tristan H.</h2>
         <h2>4/5</h2>
          <p>
@@ -54,27 +90,14 @@
 <!-- Reviews Form -->
 <form method="post">
     <div class="row">
-        <div class="starrating">
-            <p class="stars">
-                <label class="myrating">0</label>
-                <span class="marginRemover">
-                    <a class="star-1" href="?=1">1</a>
-                    <a class="star-2" href="?=2">2</a>
-                    <a class="star-3" href="?=3">3</a>
-                    <a class="star-4" href="?=4">4</a>
-                    <a class="star-5" href="?=5">5</a>
-                </span>
-            </p> 
-            <script>
-                $('.stars a').on('click', function () {
-                    $('.stars span, .stars a').removeClass('active');
-
-                    $(this).addClass('active');
-                    $('.stars span').addClass('active');
-                    $('.myrating').html($(this).text());
-                });
-            </script>
+        <div class="star-rating">
+            @for (int i = 5; i >= 1; i--)
+            {
+                <input type="radio" id="star-@i" name="rating" value="@i" asp-for="NewRating.Ratings" />
+                <label for="star-@i" title="Rating: @i stars">&#9733;</label>
+            }
         </div>
+
         <div class="col">
             <label for="firstName" class="form-label"></label>
             <input asp-for="NewReviewer.FirstName" class="form-control" placeholder="First name" aria-label="First name" id="firstName" required>
@@ -94,3 +117,11 @@
         </div>
     </div>
 </form> 
+
+<script>
+    document.querySelectorAll('.star-rating input').forEach(star => {
+        star.addEventListener('change', () => {
+            console.log(`Selected rating: ${star.value}`); 
+        });
+    });
+</script>
