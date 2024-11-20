@@ -101,27 +101,35 @@ namespace total_test_1.Pages
                 return Page();
             }
 
-            // Create the new appointment
-            var appointment = new Appointment
-            { 
-                Date = SelectedDate,
-                TimeId = SelectedTimeId,
-                CategoryId = CategoryId,
-                Customer = new Customer
-                {
-                    FirstName = FirstName,
-                    LastName = LastName,
-                    Email = Email,
-                    PhoneNumber = PhoneNumber
-                }
-            };
+            if (ModelState.IsValid)
+            {
+                // Create the new appointment
+                var appointment = new Appointment
+                { 
+                    Date = SelectedDate,
+                    TimeId = SelectedTimeId,
+                    CategoryId = CategoryId,
+                    Customer = new Customer
+                    {
+                        FirstName = FirstName,
+                        LastName = LastName,
+                        Email = Email,
+                        PhoneNumber = PhoneNumber
+                    }
+                };
 
-            appointment.Time = await _context.Times.FindAsync(SelectedTimeId);
-            appointment.Category = await _context.Categories.FindAsync(CategoryId);
+                appointment.Time = await _context.Times.FindAsync(SelectedTimeId);
+                appointment.Category = await _context.Categories.FindAsync(CategoryId);
 
-            TempData["Appointment"] = JsonSerializer.Serialize(appointment);
+                TempData["Appointment"] = JsonSerializer.Serialize(appointment);
 
-            return RedirectToPage("Confirmation");
+                return RedirectToPage("Confirmation");
+
+            }
+            else
+            {
+                return Page();
+            }
         }
 
         private async Task<List<SelectListItem>> GetAvailableTimes(DateOnly date)
