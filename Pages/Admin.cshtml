@@ -2,10 +2,11 @@
 @using total_test_1.Models.Schedule
 @using total_test_1.Models.Admin
 @model total_test_1.Pages.AdminModel
+@using Microsoft.AspNetCore.Http.Extensions;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     ViewBag.Title = "Admin";
 }
-[Authorize]
 <body>
 	<div class="text-center">
 		<h1 class="display-2">View Schedule - Admin</h1>
@@ -31,24 +32,77 @@
 	<div class="row justify-content-center" style="color: #ffffff;">
 	<table class="table table-responsive text-white">
 		<tr>
+			<th class="p-1">Select</th>
 			<th class="p-2">Time</th>
 			<th class="p-2">First Name</th>
 			<th class="p-2">Last Name</th>
 		</tr>
-		@{
-			foreach (AppointmentDisplay appointment in ViewBag.appointmentViewer)
-			{
-				<tr>
-					<td class="p-2">@appointment.Time</td>
-					<td class="p-2">@appointment.FirstName</td>
-					<td class="p-2">@appointment.LastName</td>
-				</tr>
+			@{
+				string address = HttpContextAccessor.HttpContext.Request.QueryString.Value;
 			}
-		}
-        </table>
+		<form>
+				@{
+					if (ViewBag.appointmentViewer != null)
+					{
+						
+					
+						foreach (AppointmentDisplay appointment in ViewBag.appointmentViewer)
+						{
+										<tr>
+											<td class="p-1"><input type="checkbox" name="select" id="@appointment.Id" onclick="location.href='@Url.Action("Select", "Admin")?id=@appointment.Id'" /></td>
+											<td class="p-2">@appointment.Time</td>
+											<td class="p-2">@appointment.FirstName</td>
+											<td class="p-2">@appointment.LastName</td>
+										</tr>
+						}
+                    }
+                }
+		</form>
+		
+		</table>
     </div>
+	@{
+		if (ViewBag.fullDisplay != null)
+		{
+						<h2>Selected Appointment:</h2>
+						<table class="table table-responsive text-white">
+							<tr>
+								<td>Date:</td>
+								<td class="p-1">@ViewBag.fullDisplay.Date</td>
+								<td class="p-1">@ViewBag.fullDisplay.Time</td>
+							</tr>
+							<tr>
+								<td>Name:</td>
+								<td class="p-1">@ViewBag.fullDisplay.FirstName</td>
+								<td class="p-1">@ViewBag.fullDisplay.LastName</td>
+							</tr>
+							<tr>
+								<td>Category:</td>
+								<td class="p-1">@ViewBag.fullDisplay.Category</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>Contact Info:</td>
+								<td class="p-1">@ViewBag.fullDisplay.Email</td>
+								<td class="p-1">@ViewBag.fullDisplay.Phone</td>
+							</tr>
+						</table>
+
+		}
+	}
 	<div class="container d-flex justify-content-center mt-5">
-		<a href="#" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
+		@{
+			if (ViewBag.fullDisplay != null)
+			{
+				<a href="@Url.Action("Delete", "Admin")?id=@ViewBag.fullDisplay.AppointmentId" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
+			}
+			else
+			{
+				<a href="" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
+			}
+
+}
+		
 		<a class="ms-5 btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
 	</div>
 	<div class="text-center mt-5">
