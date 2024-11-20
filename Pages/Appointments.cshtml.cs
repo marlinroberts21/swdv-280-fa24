@@ -34,12 +34,21 @@ namespace total_test_1.Pages
         public int CategoryId { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Please enter a first name.")]
+        [RegularExpression("^[a-zA-Z0-9+$]",
+            ErrorMessage = "First name may not contain special characters.")]
         public string FirstName { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Please enter a last name.")]
+        [RegularExpression("^[a-zA-Z0-9+$]",
+            ErrorMessage = "Last name may not contain special characters.")]
         public string LastName { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Please enter a Email.")]
+        [RegularExpression("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$\"",
+            ErrorMessage = "Incorrect email formatting.")]
         public string Email { get; set; }
 
         [BindProperty]
