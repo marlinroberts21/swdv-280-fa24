@@ -2,7 +2,7 @@
 {
 	public class FullDisplay
 	{
-		int AppointmentId { get; set; }
+		public int AppointmentId { get; set; }
 
 		public DateOnly Date { get; set; }
 		public TimeOnly Time { get; set; }
