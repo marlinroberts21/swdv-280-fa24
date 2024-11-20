@@ -9,7 +9,7 @@
 
 <head><title>Appointments</title></head>
 <body>
-    <h1 class="text-center">Schedule an Appointment! @availableTimes.Count @availableCategories.Count</h1>
+    <h1 class="text-center">Schedule an Appointment!</h1>
     <br />
 
     <p class="text-center">Please fill out the form below with your information and choose an available appointment time.</p>
@@ -17,16 +17,15 @@
 
 
 <!-- The form for scheduling an appointment -->
-
 <form asp-page-handler="Submit" method="post" id="appointmentForm" class="mx-auto w-50">
     <div class="d-flex flex-wrap justify-content-between">
             <div class="form-group">
-                <label class="form-label"></label> <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" asp-for="SelectedDate" />
+                <label class="form-label">Date:</label> <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="SelectedDate"/>
                 <span asp-validation-for="SelectedDate" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label class="form-label" ></label>
+                <label class="form-label" >Time:</label>
                 <select class="form-select" id="time" asp-for="SelectedTimeId">
                     @foreach(var time in availableTimes)
                     {
@@ -73,10 +72,59 @@
         
 
     <div class="d-flex justify-content-between">
-        <button class="btn btn-primary" >Clear</button>
+        <button type="reset" class="btn btn-primary" >Clear</button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dateInput = document.getElementById("SelectedDate");
+            if (!dateInput) {
+                console.error("SelectedDate input not found in the DOM");
+                return;
+            }
+
+            const noTimesMessage = document.createElement("p");
+            noTimesMessage.style.color = "red";
+            noTimesMessage.style.display = "none";
+            noTimesMessage.id = "noTimesMessage";
+            dateInput.parentNode.appendChild(noTimesMessage);
+
+            dateInput.addEventListener('change', async (e) => {
+                console.log("Date changed");
+                const selectedDate = e.target.value;
+
+                // Fetch and populate logic
+                const response = await fetch(`/Appointments?handler=FetchTimes&selectedDate=${selectedDate}`);
+                const timesDropdown = document.getElementById("time");
+                timesDropdown.innerHTML = ""; // Clear existing options
+
+                noTimesMessage.style.display = "none";
+
+                if (response.ok) {
+                    const data = await response.json();
+
+                    if (data.times && data.times.length > 0) {
+                        data.times.forEach(time => {
+                            const option = document.createElement("option");
+                            option.value = time.value;
+                            option.textContent = time.text;
+                            timesDropdown.appendChild(option);
+                        });
+                    }
+                    else{
+                            // Display the no times message
+                        noTimesMessage.textContent = data.message;
+                        noTimesMessage.style.display = "block";
+                    }
+                } 
+                else {
+                    console.error("Failed to fetch available times");
+                }
+            });
+        });
+    </script>
 
 </body>
 

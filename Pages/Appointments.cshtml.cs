@@ -24,7 +24,7 @@ namespace total_test_1.Pages
             _context = context;
         }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public DateOnly SelectedDate { get; set; }
 
         [BindProperty]
@@ -63,32 +63,43 @@ namespace total_test_1.Pages
 
         }
 
-        public async Task<IActionResult> OnPostFetchTimesAsync()
+        public async Task<IActionResult> OnGetFetchTimesAsync(DateOnly selectedDate)
         {
             // Load available times based on selected date only (no category filtering)
-            TimeOptions = await GetAvailableTimes(SelectedDate);
-            CategoryOptions = await _context.Categories.Select(c => new SelectListItem
+            var availableTimes = await GetAvailableTimes(selectedDate);
+
+            if (!availableTimes.Any())
             {
-                Value = c.CategoryId.ToString(),
-                Text = c.Category1
-            })
-            .ToListAsync();
-            return Page();
+                return new JsonResult(new { message = "No times availabe for selected date.", times = new List<Object>() });
+            }
+
+            var result = availableTimes.Select(t => new
+            {
+                value = t.Value,
+                text = t.Text
+            }).ToList();
+
+            return new JsonResult(new { message = string.Empty, times = result });
         }
 
         public async Task<IActionResult> OnPostSubmitAsync()
         {
-            //// Ensure the time is still available (double-check for any possible race conditions)
-            //var isAlreadyBooked = await _context.Appointments
-            //    .AnyAsync(a => a.Date == SelectedDate && a.TimeId == SelectedTimeId);
+            // Ensure the time is still available (double-check for any possible race conditions)
+            var isTimeAvailable = await _context.Times
+                .AnyAsync(t => t.TimeId == SelectedTimeId &&
+                       !_context.Appointments.Any(a => a.Date == SelectedDate && a.TimeId == SelectedTimeId));
 
-            //if (isAlreadyBooked)
-            //{
-            //    ModelState.AddModelError("", "The selected time slot is no longer available. Please choose another time.");
-            //    return Page();
-            //}
-
-            SelectedTimeId = 1;
+            if (!isTimeAvailable)
+            {
+                ModelState.AddModelError("", "The selected time slot is no longer available. Please choose another time.");
+                TimeOptions = await GetAvailableTimes(SelectedDate);
+                CategoryOptions = await _context.Categories.Select(c => new SelectListItem
+                {
+                    Value = c.CategoryId.ToString(),
+                    Text = c.Category1
+                }).ToListAsync();
+                return Page();
+            }
 
             // Create the new appointment
             var appointment = new Appointment
@@ -120,14 +131,16 @@ namespace total_test_1.Pages
             .Select(a => a.TimeId)
             .ToListAsync();
 
-            return await _context.Appointments
-            .Where(a => a.Date == date && !bookedTimes.Contains(a.TimeId))
-            .Select(a => new SelectListItem
-            {
-                Value = a.TimeId.ToString(),
-                Text = a.Time.Time1.ToString("H:mm")
-            })
-            .ToListAsync();
+            return await _context.Times
+                .Where(t => !bookedTimes.Contains(t.TimeId))
+                .Select(t => new SelectListItem
+                {
+                    Value = t.TimeId.ToString(),
+                    Text = t.Time1.ToString("H:mm")
+                })
+                .ToListAsync();
         }
+
+
     }
 }
