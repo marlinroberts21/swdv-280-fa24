@@ -7,6 +7,21 @@
 @{
     ViewBag.Title = "Admin";
 }
+
+<script>
+	document.addEventListener("DOMContentLoaded", function (event) {
+		var scrollpos = sessionStorage.getItem('scrollpos');
+		if (scrollpos) {
+			window.scrollTo(0, scrollpos);
+			sessionStorage.removeItem('scrollpos');
+		}
+	});
+
+	window.addEventListener("beforeunload", function (e) {
+		sessionStorage.setItem('scrollpos', window.scrollY);
+	});
+</script>
+
 <body>
 	<div class="text-center">
 		<h1 class="display-2">View Schedule - Admin</h1>
@@ -44,16 +59,16 @@
 				@{
 					if (ViewBag.appointmentViewer != null)
 					{
-						
-					
+
+
 						foreach (AppointmentDisplay appointment in ViewBag.appointmentViewer)
 						{
-										<tr>
-											<td class="p-1"><input type="checkbox" name="select" id="@appointment.Id" onclick="location.href='@Url.Action("Select", "Admin")?id=@appointment.Id'" /></td>
-											<td class="p-2">@appointment.Time</td>
-											<td class="p-2">@appointment.FirstName</td>
-											<td class="p-2">@appointment.LastName</td>
-										</tr>
+									<tr>
+													<td class="p-1"><input type="checkbox" class="theBox" name="select" id="@appointment.Id" onclick="location.href='@Url.Action("Select", "Admin")?id=@appointment.Id'" /></td>
+													<td class="p-2">@appointment.Time</td>
+													<td class="p-2">@appointment.FirstName</td>
+													<td class="p-2">@appointment.LastName</td>
+												</tr>
 						}
                     }
                 }
@@ -64,29 +79,32 @@
 	@{
 		if (ViewBag.fullDisplay != null)
 		{
-						<h2>Selected Appointment:</h2>
-						<table class="table table-responsive text-white">
-							<tr>
-								<td>Date:</td>
-								<td class="p-1">@ViewBag.fullDisplay.Date</td>
-								<td class="p-1">@ViewBag.fullDisplay.Time</td>
-							</tr>
-							<tr>
-								<td>Name:</td>
-								<td class="p-1">@ViewBag.fullDisplay.FirstName</td>
-								<td class="p-1">@ViewBag.fullDisplay.LastName</td>
-							</tr>
-							<tr>
-								<td>Category:</td>
-								<td class="p-1">@ViewBag.fullDisplay.Category</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>Contact Info:</td>
-								<td class="p-1">@ViewBag.fullDisplay.Email</td>
-								<td class="p-1">@ViewBag.fullDisplay.Phone</td>
-							</tr>
-						</table>
+								<script>
+									document.getElementById("@ViewBag.fullDisplay.AppointmentId").checked = true;
+								</script>
+								<h2>Selected Appointment:</h2>
+								<table class="table table-responsive text-white">
+									<tr>
+										<td>Date:</td>
+										<td class="p-1">@ViewBag.fullDisplay.Date</td>
+										<td class="p-1">@ViewBag.fullDisplay.Time</td>
+									</tr>
+									<tr>
+										<td>Name:</td>
+										<td class="p-1">@ViewBag.fullDisplay.FirstName</td>
+										<td class="p-1">@ViewBag.fullDisplay.LastName</td>
+									</tr>
+									<tr>
+										<td>Category:</td>
+										<td class="p-1">@ViewBag.fullDisplay.Category</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Contact Info:</td>
+										<td class="p-1">@ViewBag.fullDisplay.Email</td>
+										<td class="p-1">@ViewBag.fullDisplay.Phone</td>
+									</tr>
+								</table>
 
 		}
 	}
@@ -94,11 +112,11 @@
 		@{
 			if (ViewBag.fullDisplay != null)
 			{
-				<a href="@Url.Action("Delete", "Admin")?id=@ViewBag.fullDisplay.AppointmentId" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
+						<a href="@Url.Action("Delete", "Admin")?id=@ViewBag.fullDisplay.AppointmentId" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
 			}
 			else
 			{
-				<a href="" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
+						<a href="" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
 			}
 
 }
