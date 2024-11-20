@@ -128,6 +128,15 @@ namespace total_test_1.Pages
             }
             else
             {
+                CategoryOptions = await _context.Categories.Select(c => new SelectListItem
+                {
+                    Value = c.CategoryId.ToString(),
+                    Text = c.Category1
+                })
+                .ToListAsync();
+
+                TimeOptions = await GetAvailableTimes(SelectedDate);
+
                 return Page();
             }
         }
