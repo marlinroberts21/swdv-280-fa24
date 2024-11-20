@@ -53,10 +53,10 @@ namespace total_test_1.Controllers
         }
         public IActionResult Select(string id)
         {
-            string date3 = Request.Cookies["selectedDate"];
+            string date2 = Request.Cookies["selectedDate"];
 			
 
-			DateOnly dateOnly = DateOnly.Parse(date3);
+			DateOnly dateOnly = DateOnly.Parse(date2);
 
 			int intId = Int32.Parse(id);
             var expandedAppointment = (
