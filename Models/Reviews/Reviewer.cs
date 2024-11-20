@@ -11,7 +11,7 @@ public partial class Reviewer
     [Key]
     public int ReviewerId { get; set; }
 
-    [Required(ErrorMessage = "Name is required")]
+    [Required(ErrorMessage = "First name is required")]
     [StringLength(255)]
     [Unicode(false)]
     public string FirstName { get; set; } = null!;

@@ -13,6 +13,7 @@ public partial class Rating
 
     [Column("Rating")]
 
+    [Required(ErrorMessage ="Rating is required")]
     [Range(1, 5, ErrorMessage ="Rating must be 1 through 5")]
     public int Rating1 { get; set; }
 

@@ -53,16 +53,17 @@
 </div>
 <!-- Reviews Form -->
 <form method="post"> 
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
         <div class="starrating">
             <p class="stars">
                 <label class="myrating">0</label>
                 <span class="marginRemover">
-                    <a class="star-1" href="?=1">1</a>
-                    <a class="star-2" href="?=2">2</a>
-                    <a class="star-3" href="?=3">3</a>
-                    <a class="star-4" href="?=4">4</a>
-                    <a class="star-5" href="?=5">5</a>
+                    <a class="star-1" href="#">1</a>
+                    <a class="star-2" href="#">2</a>
+                    <a class="star-3" href="#">3</a>
+                    <a class="star-4" href="#">4</a>
+                    <a class="star-5" href="#">5</a>
                 </span>
             </p> 
             <script>
@@ -79,6 +80,7 @@
         <div class="col">
             <label for="firstName" class="form-label"></label>
             <input asp-for="NewReviewer.FirstName" class="form-control" placeholder="First name" aria-label="First name" id="firstName">
+            <span asp-validation-for="NewReviewer.FirstName" class="text-danger"></span>
         </div>
         <div class="col">
             <label for="lastName" class="form-label"></label>

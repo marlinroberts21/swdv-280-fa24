@@ -40,7 +40,9 @@ namespace total_test_1.Pages
                 _context.Reviewers.Add(NewReviewer);
                 _context.SaveChanges();
 
-              
+                NewReview.ReviewerId = NewReviewer.ReviewerId;
+                //NewReview.RatingId = NewRating.RatingId;
+
 
                 _context.Reviews.Add(NewReview);
                 _context.SaveChanges();
@@ -49,6 +51,7 @@ namespace total_test_1.Pages
             } 
 
             return Page();
+            //return RedirectToPage("/Reviews");
         }
     }
 }
