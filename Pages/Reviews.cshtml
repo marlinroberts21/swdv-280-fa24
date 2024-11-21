@@ -9,9 +9,10 @@
 <h1>Reviews Page</h1>
 <div width="auto">
     <div style="max-height:500px;width:auto;overflow:scroll;overflow-x:hidden;margin-left:auto;margin-right:auto;border:1px solid black; ">
+
         @foreach (var review in Model.Reviews)
-        {
-            <h2>@review.Reviewer?.FirstName @review.Reviewer?.LastName</h2>
+        { 
+            <h2>@review.Reviewer?.FirstName @review.Reviewer?.LastName @review.RatingId/5 @review.DateCreated</h2>
             <p>@review.ReviewText</p>
         }
         <h2>Tristan H.</h2>
@@ -36,7 +37,7 @@
         </p>
 
         <h2>Cooper L.</h2>
-        <h2>4.5/5</h2>
+        <h2>4/5</h2>
         <p>Got a new wrap finished here and it has held up for a few years now!</p>
 
         <h2>Kyle C.</h2>
@@ -58,11 +59,11 @@
             <p class="stars">
                 <label class="myrating">0</label>
                 <span class="marginRemover">
-                    <a class="star-1" href="?=1">1</a>
-                    <a class="star-2" href="?=2">2</a>
-                    <a class="star-3" href="?=3">3</a>
-                    <a class="star-4" href="?=4">4</a>
-                    <a class="star-5" href="?=5">5</a>
+                    <a class="star-1" href="#=1">1</a>
+                    <a class="star-2" href="#=2">2</a>
+                    <a class="star-3" href="#=3">3</a>
+                    <a class="star-4" href="#=4">4</a>
+                    <a class="star-5" href="#=5">5</a>
                 </span>
             </p> 
             <script>
