@@ -20,6 +20,8 @@ public partial class ReviewsContext : DbContext
     public virtual DbSet<Review> Reviews { get; set; }
 
     public virtual DbSet<Reviewer> Reviewers { get; set; }
+    public object Review { get; internal set; }
+    public object DateOnly { get; internal set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("name=ReviewsConnection");
