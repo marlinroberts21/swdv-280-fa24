@@ -34,11 +34,13 @@
 
 				<script>
 					function redirectToSchedule() {
-						var selectedDate = document.getElementById("dateEntry").value;
-						var formattedDate = encodeURIComponent(selectedDate);
-						window.location.href = '/admin/schedule?selectedDate=' + formattedDate;
-					}
+					var selectedDate = document.getElementById("dateEntry").value;
+					var formattedDate = encodeURIComponent(selectedDate);
+					window.location.href = '/admin/schedule?selectedDate=' + formattedDate;
+					}	
 				</script>
+				
+						
 
 				<div class="form-text">Today - @DateTime.Today.ToString("MM/dd/yy")</div>
 			</div>
@@ -63,66 +65,62 @@
 
 						foreach (AppointmentDisplay appointment in ViewBag.appointmentViewer)
 						{
-									<tr>
-													<td class="p-1"><input type="checkbox" class="theBox" name="select" id="@appointment.Id" onclick="location.href='@Url.Action("Select", "Admin")?id=@appointment.Id'" /></td>
-													<td class="p-2">@appointment.Time</td>
-													<td class="p-2">@appointment.FirstName</td>
-													<td class="p-2">@appointment.LastName</td>
-												</tr>
+							<tr>
+								<td class="p-1"><input type="checkbox" class="theBox" name="select" id="@appointment.Id" onclick="location.href = '@Url.Action("Select", "Admin")?id=@appointment.Id'" /></td>
+								<td class="p-2">@appointment.Time</td>
+								<td class="p-2">@appointment.FirstName</td>
+								<td class="p-2">@appointment.LastName</td>
+							</tr>
 						}
                     }
                 }
 		</form>
-		
 		</table>
     </div>
 	@{
 		if (ViewBag.fullDisplay != null)
 		{
-								<script>
-									document.getElementById("@ViewBag.fullDisplay.AppointmentId").checked = true;
-								</script>
-								<h2>Selected Appointment:</h2>
-								<table class="table table-responsive text-white">
-									<tr>
-										<td>Date:</td>
-										<td class="p-1">@ViewBag.fullDisplay.Date</td>
-										<td class="p-1">@ViewBag.fullDisplay.Time</td>
-									</tr>
-									<tr>
-										<td>Name:</td>
-										<td class="p-1">@ViewBag.fullDisplay.FirstName</td>
-										<td class="p-1">@ViewBag.fullDisplay.LastName</td>
-									</tr>
-									<tr>
-										<td>Category:</td>
-										<td class="p-1">@ViewBag.fullDisplay.Category</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>Contact Info:</td>
-										<td class="p-1">@ViewBag.fullDisplay.Email</td>
-										<td class="p-1">@ViewBag.fullDisplay.Phone</td>
-									</tr>
-								</table>
+			<div class="text-center">
+				
+			</div>
+			<script>								
+				document.getElementById("@ViewBag.fullDisplay.AppointmentId").checked = true;
+			</script>
+			<h2 class="text-center">Selected Appointment:</h2>
+			<table class="table table-responsive text-white">
+				<tr>
+					<td>Date:</td>
+					<td class="p-1">@ViewBag.fullDisplay.Date</td>
+					<td class="p-1">@ViewBag.fullDisplay.Time</td>
+				</tr>
+				<tr>
+					<td>Name:</td>
+					<td class="p-1">@ViewBag.fullDisplay.FirstName</td>
+					<td class="p-1">@ViewBag.fullDisplay.LastName</td>
+				</tr>
+				<tr>
+					<td>Category:</td>
+					<td class="p-1">@ViewBag.fullDisplay.Category</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Contact Info:</td>
+					<td class="p-1">@ViewBag.fullDisplay.Email</td>
+					<td class="p-1">@ViewBag.fullDisplay.Phone</td>
+				</tr>
+			</table>
 
+			<div class="container d-flex justify-content-center mt-5">
+				<a class="btn btn-primary" href="@Url.Action("Select", "Admin")">Unselect Appointment</a>
+				<a href="@Url.Action("Delete", "Admin")?id=@ViewBag.fullDisplay.AppointmentId" class="ms-5 btn btn-primary">Delete Appointment</a>
+			</div>
 		}
 	}
-	<div class="container d-flex justify-content-center mt-5">
-		@{
-			if (ViewBag.fullDisplay != null)
-			{
-						<a href="@Url.Action("Delete", "Admin")?id=@ViewBag.fullDisplay.AppointmentId" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
-			}
-			else
-			{
-						<a href="" class="me-5 pe-5 ps-5 btn btn-primary">Delete</a>
-			}
 
-}
-		
-		<a class="ms-5 btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
+	<div class="container d-flex justify-content-center mt-5">
+		<a class="btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
 	</div>
+
 	<div class="text-center mt-5">
 		<h2>Scott Didriksen</h2>
 		<p>5500 E. Opportunity Dr. Nampa, ID 83687<br />
