@@ -54,7 +54,6 @@
 </div>
 <!-- Reviews Form -->
 <form method="post"> 
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
         <div class="starrating">
             <p class="stars">
@@ -80,8 +79,7 @@
         </div>
         <div class="col">
             <label for="firstName" class="form-label"></label>
-            <input asp-for="NewReviewer.FirstName" class="form-control" placeholder="First name" aria-label="First name" id="firstName">
-            <span asp-validation-for="NewReviewer.FirstName" class="text-danger"></span>
+            <input asp-for="NewReviewer.FirstName" class="form-control" placeholder="First name" aria-label="First name" id="firstName" required>
         </div>
         <div class="col">
             <label for="lastName" class="form-label"></label>
