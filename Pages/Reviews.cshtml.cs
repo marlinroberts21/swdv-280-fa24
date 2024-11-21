@@ -20,32 +20,36 @@ namespace total_test_1.Pages
         [BindProperty]
         public Reviewer NewReviewer { get; set; } = new Reviewer();
 
+        public DateOnly NewDateOnly { get; set; }
         
-        //public Rating NewRating { get; set; } = new Rating();
-        public void OnGet()
-        {
-            
+
+        public void OnGet(string? rate)
+        { 
             Reviews = _context.Reviews 
                 .Include(r => r.Reviewer)
-                //.Include(r => r.Rating)
-                .ToList(); 
-            
+                .Include(r => r.Rating)
+                .ToList();    
         } 
 
         public IActionResult OnPostAddReview()
         {
-            if  (ModelState.IsValid )
-            {  
+            if (ModelState.IsValid)
+            {
+
+
+                DateTime todaysDate = DateTime.Now;
+                NewDateOnly = DateOnly.FromDateTime(todaysDate);
                 
-                _context.Reviewers.Add(NewReviewer);
-                _context.SaveChanges();
 
-                NewReview.ReviewerId = NewReviewer.ReviewerId;
+                NewReview.Reviewer = NewReviewer;
                 //NewReview.RatingId = NewRating.RatingId;
+                NewReview.DateCreated = NewDateOnly;
 
+                
 
                 _context.Reviews.Add(NewReview);
                 _context.SaveChanges();
+
 
                 return RedirectToPage("/Reviews");
             } 

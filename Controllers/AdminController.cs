@@ -53,37 +53,38 @@ namespace total_test_1.Controllers
         }
         public IActionResult Select(string id)
         {
-            string date3 = Request.Cookies["selectedDate"];
+            string date2 = Request.Cookies["selectedDate"];
 			
 
-			DateOnly dateOnly = DateOnly.Parse(date3);
-
-			int intId = Int32.Parse(id);
-            var expandedAppointment = (
-                from customer in context.Customers
-                join appointment in context.Appointments
-                    on customer.CustomerId equals appointment.CustomerId
-                join time in context.Times
-                    on appointment.TimeId equals time.TimeId
-                join category in context.Categories
-                    on appointment.CategoryId equals category.CategoryId
-                where appointment.AppointmentId == intId
-                select new FullDisplay(appointment.AppointmentId, appointment.Date, time.Time1, customer.FirstName, customer.LastName, category.Category1, customer.Email, customer.PhoneNumber)
-                );
-            foreach (FullDisplay fullDisplay in expandedAppointment)
+			DateOnly dateOnly = DateOnly.Parse(date2);
+            if (id != null)
             {
-				ViewBag.fullDisplay = fullDisplay;
-			}
-            
+                int intId = Int32.Parse(id);
+                var expandedAppointment = (
+                    from customer in context.Customers
+                    join appointment in context.Appointments
+                        on customer.CustomerId equals appointment.CustomerId
+                    join time in context.Times
+                        on appointment.TimeId equals time.TimeId
+                    join category in context.Categories
+                        on appointment.CategoryId equals category.CategoryId
+                    where appointment.AppointmentId == intId
+                    select new FullDisplay(appointment.AppointmentId, appointment.Date, time.Time1, customer.FirstName, customer.LastName, category.Category1, customer.Email, customer.PhoneNumber)
+                );
+                foreach (FullDisplay fullDisplay in expandedAppointment)
+                {
+                    ViewBag.fullDisplay = fullDisplay;
+                }
+            }
 			var appointmentViewer = (
-							from customer in context.Customers
-							join appointment in context.Appointments
-								on customer.CustomerId equals appointment.CustomerId
-							join time in context.Times
-								on appointment.TimeId equals time.TimeId
-							where appointment.Date == dateOnly
-							select new AppointmentDisplay(appointment.AppointmentId, time.Time1, customer.FirstName, customer.LastName)
-						);
+				from customer in context.Customers
+				join appointment in context.Appointments
+					on customer.CustomerId equals appointment.CustomerId
+				join time in context.Times
+					on appointment.TimeId equals time.TimeId
+				where appointment.Date == dateOnly
+				select new AppointmentDisplay(appointment.AppointmentId, time.Time1, customer.FirstName, customer.LastName)
+			);
             ViewBag.appointmentViewer = appointmentViewer;
             string datestring = Request.Cookies["selectedDate"];
             DateTime date;
