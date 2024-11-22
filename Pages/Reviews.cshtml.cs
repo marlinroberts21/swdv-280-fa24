@@ -84,6 +84,7 @@ namespace total_test_1.Pages
 
             Console.WriteLine("ModelState is invalid.");
             return Page();
+            
         }
 
     }

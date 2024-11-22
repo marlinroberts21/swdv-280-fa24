@@ -17,6 +17,7 @@ public partial class Review
 
     public DateOnly DateCreated { get; set; }
 
+    [StringLength(1000, ErrorMessage = "Review text cannot exceed 1000 characters")]
     [Unicode(false)]
     public string ReviewText { get; set; } = null!;
 
