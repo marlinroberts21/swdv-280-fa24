@@ -42,7 +42,6 @@ namespace total_test_1.Pages
                 
 
                 NewReview.Reviewer = NewReviewer;
-                //NewReview.RatingId = NewRating.RatingId;
                 NewReview.DateCreated = NewDateOnly;
 
                 
@@ -55,6 +54,7 @@ namespace total_test_1.Pages
             } 
 
             return Page();
+            
         }
     }
 }

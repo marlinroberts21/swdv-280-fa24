@@ -53,7 +53,7 @@
     </div>
 </div>
 <!-- Reviews Form -->
-<form method="post">
+<form method="post"> 
     <div class="row">
         <div class="starrating">
             <p class="stars">
@@ -73,8 +73,9 @@
                     $(this).addClass('active');
                     $('.stars span').addClass('active');
                     $('.myrating').html($(this).text());
+                    $('.rate').value = $('.myrating').html($(this).text());
                 });
-            </script>
+            </script> 
         </div>
         <div class="col">
             <label for="firstName" class="form-label"></label>

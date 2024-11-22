@@ -12,6 +12,7 @@ public partial class Rating
     public int RatingId { get; set; }
 
     [Column("Rating")]
+
     public int Rating1 { get; set; }
 
     [InverseProperty("Rating")]
