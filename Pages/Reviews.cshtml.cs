@@ -26,6 +26,8 @@ namespace total_test_1.Pages
         public Rating NewRating { get; set; } = new Rating();
 
         public double AverageRating { get; private set; } = 0; // Average rating
+        public DateOnly NewDateOnly { get; set; }
+        
 
         public void OnGet(string? rate)
         { 
@@ -66,6 +68,13 @@ namespace total_test_1.Pages
                 // Save Review
                 NewReview.ReviewerId = NewReviewer.ReviewerId;
                 NewReview.RatingId = NewRating.RatingId;
+
+                DateTime todaysDate = DateTime.Now;
+                NewDateOnly = DateOnly.FromDateTime(todaysDate);
+                
+
+                NewReview.Reviewer = NewReviewer;
+                NewReview.DateCreated = NewDateOnly;
 
                 _context.Reviews.Add(NewReview);
                 _context.SaveChanges();
