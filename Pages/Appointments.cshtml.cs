@@ -43,7 +43,7 @@ namespace total_test_1.Pages
         public string Email { get; set; }
 
         [BindProperty]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public List<SelectListItem> CategoryOptions { get; set; }
         public List<SelectListItem> TimeOptions { get; set; }
