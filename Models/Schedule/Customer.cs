@@ -35,7 +35,7 @@ public partial class Customer
     [Required(ErrorMessage = "Please enter a Phone Number.")]
     [RegularExpression("^(?([0-9]{3}))?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$",
         ErrorMessage = "Incorrect phone number formatting.")]
-    public int PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; } = null!;
 
     [InverseProperty("Customer")]
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();

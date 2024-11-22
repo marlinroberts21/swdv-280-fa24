@@ -6,77 +6,63 @@
 }
 
 
-<h1>Reviews Page</h1>
+<h1>
+    Reviews Page
+</h1>
+<h2>
+    Average Rating: 
+    <span class="star-rating" style="margin-left: 20px;">
+        @for (int i = 1; i <= 5; i++)
+        {
+            if (i <= Math.Round(Model.AverageRating)) // Round the average rating
+            {
+                <span class="filled-star">&#9733;</span> <!-- Filled Star -->
+            }
+            else
+            {
+                <span class="empty-star">&#9734;</span> <!-- Empty Star -->
+            }
+        }
+    </span>
+</h2>
+
 <div width="auto">
     <div style="max-height:500px;width:auto;overflow:scroll;overflow-x:hidden;margin-left:auto;margin-right:auto;border:1px solid black; ">
-
-        @foreach (var review in Model.Reviews)
-        { 
-            <h2>@review.Reviewer?.FirstName @review.Reviewer?.LastName @review.RatingId/5 @review.DateCreated</h2>
+    @foreach (var review in Model.Reviews)
+    {
+        <div class="review-item">
+            <h2>
+                @review.Reviewer?.FirstName @review.Reviewer?.LastName
+                <span class="star-rating-static">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        if (i <= review.Rating?.Ratings)
+                        {
+                            <span class="filled-star">&#9733;</span> <!-- Filled Star -->
+                        }
+                        else
+                        {
+                            <span class="empty-star">&#9734;</span> <!-- Empty Star -->
+                        }
+                    }
+                </span>
+            </h2>
             <p>@review.ReviewText</p>
-        }
-        <h2>Tristan H.</h2>
-        <h2>4/5</h2>
-         <p>
-            When most places said that they wouldnt be able to fix my car after I got t-bones Scotts repair was the only place to take my car in.
-            They showed me the price for all the parts after inspection and showed me their fee for working on the car. They got it done
-            quick and had me back to driving my car within a few weeks.
-        </p>
-
-
-        <h2> Jake P.</h2>
-        <h2> 4/5</h2>
-        <p>Very timly and professional while getting my bumper fixed up.</p>
-
-        <h2>Henry J.</h2>
-        <h2> 5/5</h2>
-        <p>
-            After having years of sun damage on my F-150s paint I decided to get it fixed up. When I came to Scotts AutoBody I ended up getting a lot of information
-            on the diffrent ways I could go about fixing my paint wether it was a wrap or a paint touchup. I decided to go with just a normal paint touchup and
-            the car came out looking brand new again. Would reccomend everyone comes here.
-        </p>
-
-        <h2>Cooper L.</h2>
-        <h2>4/5</h2>
-        <p>Got a new wrap finished here and it has held up for a few years now!</p>
-
-        <h2>Kyle C.</h2>
-        <h2>5/5</h2>
-        <p>Got my trunk fixed after being hit and also got a new wrap to make my car look really unique.</p>
-
-
-        <h2>Terry A.</h2>
-        <h2>5/5</h2>
-        <p>They were able to get my perfect custom wrap for cheaper than most shops in the area were going to charge me.</p> 
-
-        
+        </div>
+    }
     </div>
 </div>
 <!-- Reviews Form -->
-<form method="post"> 
-    <div class="row">
-        <div class="starrating">
-            <p class="stars">
-                <label class="myrating">0</label>
-                <span class="marginRemover">
-                    <a class="star-1" href="#=1">1</a>
-                    <a class="star-2" href="#=2">2</a>
-                    <a class="star-3" href="#=3">3</a>
-                    <a class="star-4" href="#=4">4</a>
-                    <a class="star-5" href="#=5">5</a>
-                </span>
-            </p> 
-            <script>
-                $('.stars a').on('click', function () {
-                    $('.stars span, .stars a').removeClass('active');
-
-                    $(this).addClass('active');
-                    $('.stars span').addClass('active');
-                    $('.myrating').html($(this).text());
-                    $('.rate').value = $('.myrating').html($(this).text());
-                });
-            </script> 
+<form method="post">
+    <div class="row" style="margin-top:1em;">
+        <div class="star-rating-form">
+            @for (int i = 5; i >= 1; i--)  // Reverse the loop
+            {
+                <input type="radio" id="star-@i" name="NewRating.Ratings" value="@i" />
+                <label for="star-@i" title="Rating: @i stars">&#9733;</label>
+            }
         </div>
+
         <div class="col">
             <label for="firstName" class="form-label"></label>
             <input asp-for="NewReviewer.FirstName" class="form-control" placeholder="First name" aria-label="First name" id="firstName" required>
@@ -96,3 +82,11 @@
         </div>
     </div>
 </form> 
+
+<script>
+    document.querySelectorAll('.star-rating input').forEach(star => {
+        star.addEventListener('change', () => {
+            console.log(`Selected rating: ${star.value}`); 
+        });
+    });
+</script>
