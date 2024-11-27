@@ -11,6 +11,7 @@ public partial class Time
     [Key]
     public int TimeId { get; set; }
 
+    [Required]
     [Column("Time")]
     public TimeOnly Time1 { get; set; }
 

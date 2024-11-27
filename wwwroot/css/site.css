@@ -35,9 +35,6 @@ a {
     font-size: 21px;
 }
 
-#appointmentForm {
-}
-
 .aboutbanner {
     margin-left: auto;
     margin-right: auto;
@@ -50,52 +47,48 @@ a {
     border: none;
 }
 
-
 /* Star Rating Code */
 
-.stars a {
-    display: inline-block;
-    padding-right: 4px;
-    text-decoration: none;
-    margin: 0;
+/* For the Form (Interactive Stars) */
+.star-rating-form {
+    display: inline-flex;
+    flex-direction: row-reverse; /* Visually reverse the stars */
+    gap: 0.3rem;
 }
 
-    .stars a:after {
-        position: relative;
-        font-size: 18px;
-        font-family: 'FontAwesome', serif;
-        display: block;
-        content: "\f005";
-        color: #9e9e9e;
-    }
-
-.marginRemover {
-    font-size: 0;
-    /* trick to remove inline-element's margin */
+.star-rating-form input {
+    display: none; /* Hide radio buttons */
 }
 
-.stars a:hover ~ a:after {
-    color: #9e9e9e !important;
+.star-rating-form label {
+    font-size: 2rem;
+    color: #ccc; /* Default unselected color */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
 }
 
-span.active a.active ~ a:after {
-    color: #9e9e9e;
+.star-rating-form input:checked ~ label,
+.star-rating-form label:hover,
+.star-rating-form label:hover ~ label {
+    color: #ffc107; /* Highlight stars gold */
 }
 
-span:hover a:after {
-    color: yellow !important;
+/* For Static Reviews (Non-Interactive Stars) */
+.star-rating-static {
+    display: inline-flex;
+    direction: ltr; /* Ensure left-to-right static star rendering */
+    gap: 0.3rem;
 }
 
-span.active a:after,
-.stars a.active:after {
-    color: yellow;
+.filled-star {
+    color: #ffc107; /* Gold fill */
+}
+.average-rating {
+    font-size: 1.2rem;
+    color: #666; /* Optional: lighter text for the numeric average */
 }
 
-.myrating {
-    display: none;
-}
-
-/* End Star code */
+/* End star code */
 
 .navbar-nav {
     flex-wrap: wrap;
