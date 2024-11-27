@@ -32,7 +32,7 @@
     {
         <div class="review-item">
             <h2>
-                @review.Reviewer?.FirstName @review.Reviewer?.LastName
+                @review.Reviewer?.FirstName @review.Reviewer?.LastName @review.DateCreated
                 <span class="star-rating-static">
                     @for (int i = 1; i <= 5; i++)
                     {
