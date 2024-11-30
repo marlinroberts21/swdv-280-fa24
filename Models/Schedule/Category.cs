@@ -11,6 +11,7 @@ public partial class Category
     [Key]
     public int CategoryId { get; set; }
 
+    [Required]
     [Column("Category")]
     [StringLength(255)]
     [Unicode(false)]

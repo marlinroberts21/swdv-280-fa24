@@ -32,7 +32,7 @@
     {
         <div class="review-item">
             <h2>
-                @review.Reviewer?.FirstName @review.Reviewer?.LastName
+                @review.Reviewer?.FirstName @review.Reviewer?.LastName @review.DateCreated
                 <span class="star-rating-static">
                     @for (int i = 1; i <= 5; i++)
                     {
@@ -64,6 +64,7 @@
         </div>
 
         <div class="col">
+
             <label for="firstName" class="form-label"></label>
             <input asp-for="NewReviewer.FirstName" class="form-control" placeholder="First name" aria-label="First name" id="firstName" required>
         </div>
