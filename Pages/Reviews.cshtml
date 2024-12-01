@@ -10,7 +10,7 @@
     Reviews Page
 </h1>
 <h2>
-    Average Rating: 
+    Average Rating:
     <span class="star-rating" style="margin-left: 20px;">
         @for (int i = 1; i <= 5; i++)
         {
@@ -28,28 +28,28 @@
 
 <div width="auto">
     <div style="max-height:500px;width:auto;overflow:scroll;overflow-x:hidden;margin-left:auto;margin-right:auto;border:1px solid black; ">
-    @foreach (var review in Model.Reviews)
-    {
-        <div class="review-item">
-            <h2>
-                @review.Reviewer?.FirstName @review.Reviewer?.LastName @review.DateCreated
-                <span class="star-rating-static">
-                    @for (int i = 1; i <= 5; i++)
-                    {
-                        if (i <= review.Rating?.Ratings)
+        @foreach (var review in Model.Reviews)
+        {
+            <div class="review-item">
+                <h2>
+                    @review.Reviewer?.FirstName @review.Reviewer?.LastName @review.DateCreated
+                    <span class="star-rating-static">
+                        @for (int i = 1; i <= 5; i++)
                         {
-                            <span class="filled-star">&#9733;</span> <!-- Filled Star -->
+                            if (i <= review.Rating?.Ratings)
+                            {
+                                <span class="filled-star">&#9733;</span> <!-- Filled Star -->
+                            }
+                            else
+                            {
+                                <span class="empty-star">&#9734;</span> <!-- Empty Star -->
+                            }
                         }
-                        else
-                        {
-                            <span class="empty-star">&#9734;</span> <!-- Empty Star -->
-                        }
-                    }
-                </span>
-            </h2>
-            <p>@review.ReviewText</p>
-        </div>
-    }
+                    </span>
+                </h2>
+                <p>@review.ReviewText</p>
+            </div>
+        }
     </div>
 </div>
 <!-- Reviews Form -->
@@ -58,7 +58,7 @@
         <div class="star-rating-form">
             @for (int i = 5; i >= 1; i--)  // Reverse the loop
             {
-                <input type="radio" id="star-@i" name="NewRating.Ratings" value="@i" />
+                <input type="radio" id="star-@i" name="ReviewRating" value="@i" />
                 <label for="star-@i" title="Rating: @i stars">&#9733;</label>
             }
         </div>
@@ -79,15 +79,15 @@
         </div>
         <!-- Button -->
         <div class="text-center mt-5">
-            <button type="submit" class="btn btn-primary" formaction="@Url.Page("/Reviews", "AddReview")" style="width: 40%">Submit</button> 
+            <button type="submit" class="btn btn-primary" formaction="@Url.Page("/Reviews", "AddReview")" style="width: 40%">Submit</button>
         </div>
     </div>
-</form> 
+</form>
 
 <script>
     document.querySelectorAll('.star-rating input').forEach(star => {
         star.addEventListener('change', () => {
-            console.log(`Selected rating: ${star.value}`); 
+            console.log(`Selected rating: ${star.value}`);
         });
     });
 </script>

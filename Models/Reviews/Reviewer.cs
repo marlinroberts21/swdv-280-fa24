@@ -11,14 +11,14 @@ public partial class Reviewer
     [Key]
     public int ReviewerId { get; set; }
 
-    //[Required(ErrorMessage = "First name is required")]
+    [Required(ErrorMessage = "First name is required")]
     [StringLength(255)]
     [Unicode(false)]
-    public string FirstName { get; set; } = null!;
+    public string FirstName { get; set; }
 
     [StringLength(255)]
     [Unicode(false)]
-    public string? LastName { get; set; }
+    public string? LastName { get; set; } = null!;
 
     [InverseProperty("Reviewer")]
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
