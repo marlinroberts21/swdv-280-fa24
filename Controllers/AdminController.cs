@@ -97,5 +97,52 @@ namespace total_test_1.Controllers
 
 			return View("../Admin");
         }
-    }
+
+		public IActionResult Delete(string id)
+		{
+			string date2 = Request.Cookies["selectedDate"];
+
+
+			DateOnly dateOnly = DateOnly.Parse(date2);
+			if (id != null)
+			{
+				int intId = Int32.Parse(id);
+				var expandedAppointment = (
+					from customer in context.Customers
+					join appointment in context.Appointments
+						on customer.CustomerId equals appointment.CustomerId
+					join time in context.Times
+						on appointment.TimeId equals time.TimeId
+					join category in context.Categories
+						on appointment.CategoryId equals category.CategoryId
+					where appointment.AppointmentId == intId
+					select new FullDisplay(appointment.AppointmentId, appointment.Date, time.Time1, customer.FirstName, customer.LastName, category.Category1, customer.Email, customer.PhoneNumber)
+				);
+				foreach (FullDisplay fullDisplay in expandedAppointment)
+				{
+					ViewBag.fullDisplay = fullDisplay;
+				}
+			}
+			var appointmentViewer = (
+				from customer in context.Customers
+				join appointment in context.Appointments
+					on customer.CustomerId equals appointment.CustomerId
+				join time in context.Times
+					on appointment.TimeId equals time.TimeId
+				where appointment.Date == dateOnly
+				select new AppointmentDisplay(appointment.AppointmentId, time.Time1, customer.FirstName, customer.LastName)
+			);
+			ViewBag.appointmentViewer = appointmentViewer;
+			string datestring = Request.Cookies["selectedDate"];
+			DateTime date;
+			if (DateTime.TryParse(datestring, out date))
+			{
+				string formattedDate = date.ToString("yyyy-MM-dd");
+				ViewBag.selectedDate = formattedDate;
+			}
+
+
+			return View("../Admin");
+		}
+	}
 }
