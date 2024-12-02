@@ -52,6 +52,9 @@ namespace total_test_1.Pages
         public string Email { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Please enter a Phone Number.")]
+        [RegularExpression("^(?([0-9]{3}))?[-]?([0-9]{3})[-]?([0-9]{4})$",
+            ErrorMessage = "Incorrect phone number formatting.")]
         public string PhoneNumber { get; set; }
 
         public List<SelectListItem> CategoryOptions { get; set; }
