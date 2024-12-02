@@ -24,9 +24,10 @@
 
 <body>
 	<div class="text-center">
-		<h1 class="display-2">View Schedule - Admin</h1>
+		<h1 class="display-2">Appointment Manager - Admin</h1>
 	</div>
 	<hr />
+	<!-- START Date Picker --> 
 	<div class="text-center container d-flex justify-content-center">
         <form>
 			<div class="mb-3">
@@ -46,6 +47,9 @@
 			</div>
 		</form>
 	</div>
+	<!-- END Date Picker -->
+
+	<!-- START Appointments Display -->
 	<div class="row justify-content-center" style="color: #ffffff;">
 	<table class="table table-responsive text-white">
 		<tr>
@@ -77,6 +81,9 @@
 		</form>
 		</table>
     </div>
+	<!-- END Appointments Display -->
+
+	<!-- START Add & Delete Buttons -->
 	@{
 		if (ViewBag.fullDisplay != null)
 		{
@@ -120,6 +127,9 @@
 	<div class="container d-flex justify-content-center mt-5">
 		<a class="btn btn-primary" asp-page="/Appointments">Add An Appointment</a>
 	</div>
+	<!-- END Add & Delete Buttons -->
+
+	<!-- START Scott's Info -->
 
 	<div class="text-center mt-5">
 		<h2>Scott Didriksen</h2>
@@ -129,4 +139,5 @@
 		   Mail: MS 2000, P.O. Box 3010, Nampa ID 83653
 		</p>
 	</div>
+	<!-- END Scott's Info -->
 </body>
