@@ -1,0 +1,33 @@
+﻿@page
+@model total_test_1.Pages.ConfirmationModel
+
+@{
+    ViewData["Title"] = "Confirmation Page";
+}
+
+<head>
+    <title>Confirmation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="container-fluid">
+    <h1 class="text-center mt-5">Thank you for Scheduling with Us!</h1>
+
+    <div class="mt-4">
+        <h3>Your Appointment Details:</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>First Name:</strong> @Model.Appointment?.Customer?.FirstName</li>
+            <li class="list-group-item"><strong>Last Name:</strong> @Model.Appointment?.Customer?.LastName</li>
+            <li class="list-group-item"><strong>Email:</strong> @Model.Appointment?.Customer?.Email</li>
+            <li class="list-group-item"><strong>Phone:</strong> @Model.Appointment?.Customer?.PhoneNumber</li>
+            <li class="list-group-item"><strong>Date:</strong> @Model.Appointment?.Date.ToString()</li>
+            <li class="list-group-item"><strong>Time:</strong> @Model.Appointment?.Time?.Time1</li>
+            <li class="list-group-item"><strong>Service Type:</strong> @Model.Appointment?.Category?.Category1</li>
+        </ul>
+    </div>
+
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" asp-page="/Index">Return to the Main Page</a>
+    </div>
+</body>
+

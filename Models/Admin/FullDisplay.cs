@@ -16,9 +16,9 @@
 
 
 		public string Email { get; set; }
-		public int Phone { get; set; }
+		public string Phone { get; set; }
 
-        public FullDisplay(int appointmentId, DateOnly date, TimeOnly time, string firstName, string lastName, string category, string email, int phone)
+        public FullDisplay(int appointmentId, DateOnly date, TimeOnly time, string firstName, string lastName, string category, string email, string phone)
 		{
 			AppointmentId = appointmentId;
 
