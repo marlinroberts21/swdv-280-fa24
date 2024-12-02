@@ -13,16 +13,16 @@ public partial class Customer
 
     [StringLength(255)]
     [Unicode(false)]
-    [Required(ErrorMessage = "Please enter a first name.")]
-    [RegularExpression("^[a-zA-Z0-9+$]",
-        ErrorMessage ="First name may not contain special characters.")]
+    //[Required(ErrorMessage = "Please enter a first name.")]
+    //[RegularExpression("^[a-zA-Z0-9+$]",
+    //    ErrorMessage ="First name may not contain special characters.")]
     public string FirstName { get; set; } = null!;
 
     [StringLength(255)]
     [Unicode(false)]
-    [Required(ErrorMessage = "Please enter a last name.")]
-    [RegularExpression("^[a-zA-Z0-9+$]",
-        ErrorMessage = "Last name may not contain special characters.")]
+    //[Required(ErrorMessage = "Please enter a last name.")]
+    //[RegularExpression("^[a-zA-Z0-9+$]",
+    //    ErrorMessage = "Last name may not contain special characters.")]
     public string LastName { get; set; } = null!;
 
     [StringLength(255)]
@@ -32,9 +32,9 @@ public partial class Customer
     //    ErrorMessage = "Incorrect email formatting.")]
     public string Email { get; set; } = null!;
 
-    [Required(ErrorMessage = "Please enter a Phone Number.")]
-    [RegularExpression("^(?([0-9]{3}))?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$",
-        ErrorMessage = "Incorrect phone number formatting.")]
+    //[Required(ErrorMessage = "Please enter a Phone Number.")]
+    //[RegularExpression("^(?([0-9]{3}))?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$",
+    //    ErrorMessage = "Incorrect phone number formatting.")]
     public string PhoneNumber { get; set; } = null!;
 
     [InverseProperty("Customer")]
