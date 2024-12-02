@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using total_test_1.Models.Admin;
 using total_test_1.Models.Schedule;
@@ -107,21 +109,29 @@ namespace total_test_1.Controllers
 			if (id != null)
 			{
 				int intId = Int32.Parse(id);
-				var expandedAppointment = (
-					from customer in context.Customers
-					join appointment in context.Appointments
-						on customer.CustomerId equals appointment.CustomerId
-					join time in context.Times
-						on appointment.TimeId equals time.TimeId
-					join category in context.Categories
-						on appointment.CategoryId equals category.CategoryId
+				var selectCustomerId = (
+					from appointment in context.Appointments
 					where appointment.AppointmentId == intId
-					select new FullDisplay(appointment.AppointmentId, appointment.Date, time.Time1, customer.FirstName, customer.LastName, category.Category1, customer.Email, customer.PhoneNumber)
+					select (appointment.CustomerId)
 				);
-				foreach (FullDisplay fullDisplay in expandedAppointment)
-				{
-					ViewBag.fullDisplay = fullDisplay;
+
+				int customerId = 0;
+				foreach (var customer in selectCustomerId) {
+					customerId = Int32.Parse(customer.ToString());
 				}
+
+				var test2 = new Appointment();
+				foreach (var test in context.Appointments.Where(x => x.AppointmentId == intId)) {
+					test2 = test;
+				}
+
+				var removeCustomer = new Customer();
+				foreach (var customerRemover in context.Customers.Where(x => x.CustomerId == customerId)) {
+					removeCustomer = customerRemover;
+				}
+				context.Appointments.Remove(test2);
+				context.Customers.Remove(removeCustomer);
+				context.SaveChanges();
 			}
 			var appointmentViewer = (
 				from customer in context.Customers
@@ -140,7 +150,6 @@ namespace total_test_1.Controllers
 				string formattedDate = date.ToString("yyyy-MM-dd");
 				ViewBag.selectedDate = formattedDate;
 			}
-
 
 			return View("../Admin");
 		}
