@@ -72,7 +72,7 @@
         
 
     <div class="d-flex justify-content-between">
-        <button type="reset" class="btn btn-primary" >Clear</button>
+        <button onclick="resetButtonClicked()" class="btn btn-primary" >Clear</button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
@@ -124,6 +124,24 @@
                 }
             });
         });
+
+        function resetButtonClicked() {
+            // Select the text input fields by their 'asp-for' attributes
+            const textInputs = [
+                document.getElementById("FirstName"),
+                document.getElementById("LastName"),
+                document.getElementById("Email"),
+                document.getElementById("PhoneNumber")
+            ];
+
+            // Loop through each input and clear the value
+            textInputs.forEach(input => {
+                if (input) {
+                    input.value = '';  // Reset the value of the input field to an empty string
+                }
+            });
+        }
+
     </script>
 
 </body>

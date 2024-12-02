@@ -35,26 +35,22 @@ namespace total_test_1.Pages
 
         [BindProperty]
         [Required(ErrorMessage = "Please enter a first name.")]
-        [RegularExpression("^[a-zA-Z0-9+$]",
-            ErrorMessage = "First name may not contain special characters.")]
+        [RegularExpression("^[A-Za-z]+([ '-][A-Za-z]+)*$", ErrorMessage = "First name may not contain special characters.")]
         public string FirstName { get; set; }
 
         [BindProperty]
         [Required(ErrorMessage = "Please enter a last name.")]
-        [RegularExpression("^[a-zA-Z0-9+$]",
-            ErrorMessage = "Last name may not contain special characters.")]
+        [RegularExpression("^[A-Za-z]+([ '-][A-Za-z]+)*$", ErrorMessage = "Last name may not contain special characters.")]
         public string LastName { get; set; }
 
         [BindProperty]
         [Required(ErrorMessage = "Please enter a Email.")]
-        [RegularExpression("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$\"",
-            ErrorMessage = "Incorrect email formatting.")]
+        [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$", ErrorMessage = "Incorrect email formatting.")]
         public string Email { get; set; }
 
         [BindProperty]
         [Required(ErrorMessage = "Please enter a Phone Number.")]
-        [RegularExpression("^(?([0-9]{3}))?[-]?([0-9]{3})[-]?([0-9]{4})$",
-            ErrorMessage = "Incorrect phone number formatting.")]
+        [RegularExpression("^?[0-9]{10}$", ErrorMessage = "Incorrect phone number formatting.")]
         public string PhoneNumber { get; set; }
 
         public List<SelectListItem> CategoryOptions { get; set; }
