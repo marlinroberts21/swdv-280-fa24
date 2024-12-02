@@ -19,7 +19,7 @@ public partial class Review
 
     [StringLength(1000, ErrorMessage = "Review text cannot exceed 1000 characters")]
     [Unicode(false)]
-    public string ReviewText { get; set; } = null!;
+    public string? ReviewText { get; set; } = null!;
 
     [ForeignKey("RatingId")]
     [InverseProperty("Reviews")]

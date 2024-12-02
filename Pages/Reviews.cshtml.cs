@@ -23,15 +23,15 @@ namespace total_test_1.Pages
         public Reviewer NewReviewer { get; set; } = new Reviewer();
 
         [BindProperty]
-        public Rating NewRating { get; set; } = new Rating();
+        public int ReviewRating { get; set; } = 5;
 
         public double AverageRating { get; private set; } = 0; // Average rating
         public DateOnly NewDateOnly { get; set; }
-        
+
 
         public void OnGet(string? rate)
-        { 
-            Reviews = _context.Reviews 
+        {
+            Reviews = _context.Reviews
                 .Include(r => r.Reviewer)
                 .Include(r => r.Rating)
                 .ToList();
@@ -53,25 +53,14 @@ namespace total_test_1.Pages
                 _context.Reviewers.Add(NewReviewer);
                 _context.SaveChanges();
 
-                // Save Rating
-                if (NewRating.Ratings >= 1 && NewRating.Ratings <= 5)
-                {
-                    _context.Ratings.Add(NewRating);
-                    _context.SaveChanges();
-                }
-                else
-                {
-                    Console.WriteLine($"Invalid Rating Value: {NewRating.Ratings}.");
-                    return Page();
-                }
 
                 // Save Review
                 NewReview.ReviewerId = NewReviewer.ReviewerId;
-                NewReview.RatingId = NewRating.RatingId;
+                NewReview.RatingId = ReviewRating;
 
                 DateTime todaysDate = DateTime.Now;
                 NewDateOnly = DateOnly.FromDateTime(todaysDate);
-                
+
 
                 NewReview.Reviewer = NewReviewer;
                 NewReview.DateCreated = NewDateOnly;
@@ -84,7 +73,7 @@ namespace total_test_1.Pages
 
             Console.WriteLine("ModelState is invalid.");
             return Page();
-            
+
         }
 
     }
