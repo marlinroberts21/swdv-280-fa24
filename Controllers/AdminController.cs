@@ -30,8 +30,9 @@ namespace total_test_1.Controllers
             {
                 dateOnly = DateOnly.Parse(DateTime.Today.ToString("MM/dd/yyyy"));
                 ViewBag.selectedDate = DateTime.Today.ToString("yyyy-MM-dd");
+				Response.Cookies.Append("selectedDate", DateOnly.Parse(ViewBag.selectedDate).ToString(), new CookieOptions { Expires = DateTime.Now.AddDays(1) });
 			}
-            else 
+			else 
             {
 				dateOnly = DateOnly.Parse(selectedDate);
                 ViewBag.selectedDate = selectedDate;
