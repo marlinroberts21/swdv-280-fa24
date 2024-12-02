@@ -25,7 +25,7 @@ namespace total_test_1.Pages
         }
 
         [BindProperty(SupportsGet = true)]
-        public DateOnly SelectedDate { get; set; }
+        public DateTime SelectedDate { get; set; }
 
         [BindProperty]
         public int SelectedTimeId { get; set; }
@@ -52,13 +52,18 @@ namespace total_test_1.Pages
         public string Email { get; set; }
 
         [BindProperty]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public List<SelectListItem> CategoryOptions { get; set; }
         public List<SelectListItem> TimeOptions { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
+            if (SelectedDate == default) // If not already set via query string or binding
+            {
+                SelectedDate = DateTime.Today;
+            }
+
             CategoryOptions = await _context.Categories.Select(c => new SelectListItem
             {
                 Value = c.CategoryId.ToString(),
@@ -66,16 +71,16 @@ namespace total_test_1.Pages
             })
             .ToListAsync();
 
-            TimeOptions = await GetAvailableTimes(SelectedDate);
+            TimeOptions = await GetAvailableTimes(DateOnly.FromDateTime(SelectedDate));
 
             return Page();
 
         }
 
-        public async Task<IActionResult> OnGetFetchTimesAsync(DateOnly selectedDate)
+        public async Task<IActionResult> OnGetFetchTimesAsync(DateTime selectedDate)
         {
             // Load available times based on selected date only (no category filtering)
-            var availableTimes = await GetAvailableTimes(selectedDate);
+            var availableTimes = await GetAvailableTimes(DateOnly.FromDateTime(selectedDate));
 
             if (!availableTimes.Any())
             {
@@ -93,15 +98,20 @@ namespace total_test_1.Pages
 
         public async Task<IActionResult> OnPostSubmitAsync()
         {
+            if (SelectedDate.Date < DateTime.Now.Date)
+            {
+                ModelState.AddModelError("SelectedDate", "You cannot select a past date.");
+            }
+
             // Ensure the time is still available (double-check for any possible race conditions)
             var isTimeAvailable = await _context.Times
                 .AnyAsync(t => t.TimeId == SelectedTimeId &&
-                       !_context.Appointments.Any(a => a.Date == SelectedDate && a.TimeId == SelectedTimeId));
+                       !_context.Appointments.Any(a => a.Date == DateOnly.FromDateTime(SelectedDate) && a.TimeId == SelectedTimeId));
 
             if (!isTimeAvailable)
             {
                 ModelState.AddModelError("", "The selected time slot is no longer available. Please choose another time.");
-                TimeOptions = await GetAvailableTimes(SelectedDate);
+                TimeOptions = await GetAvailableTimes(DateOnly.FromDateTime(SelectedDate));
                 CategoryOptions = await _context.Categories.Select(c => new SelectListItem
                 {
                     Value = c.CategoryId.ToString(),
@@ -115,7 +125,7 @@ namespace total_test_1.Pages
                 // Create the new appointment
                 var appointment = new Appointment
                 { 
-                    Date = SelectedDate,
+                    Date = DateOnly.FromDateTime(SelectedDate),
                     TimeId = SelectedTimeId,
                     CategoryId = CategoryId,
                     Customer = new Customer
@@ -132,6 +142,9 @@ namespace total_test_1.Pages
 
                 TempData["Appointment"] = JsonSerializer.Serialize(appointment);
 
+                _context.Appointments.Add(appointment);
+                await _context.SaveChangesAsync();
+
                 return RedirectToPage("Confirmation");
 
             }
@@ -144,7 +157,7 @@ namespace total_test_1.Pages
                 })
                 .ToListAsync();
 
-                TimeOptions = await GetAvailableTimes(SelectedDate);
+                TimeOptions = await GetAvailableTimes(DateOnly.FromDateTime(SelectedDate));
 
                 return Page();
             }

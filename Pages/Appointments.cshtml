@@ -20,7 +20,7 @@
 <form asp-page-handler="Submit" method="post" id="appointmentForm" class="mx-auto w-50">
     <div class="d-flex flex-wrap justify-content-between">
             <div class="form-group">
-                <label class="form-label">Date:</label> <input class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" id="SelectedDate"/>
+                <label class="form-label">Date:</label> <input class="form-control" asp-for="SelectedDate" type="date" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" id="SelectedDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="SelectedDate" class="text-danger"></span>
             </div>
 

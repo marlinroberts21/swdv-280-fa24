@@ -32,10 +32,10 @@ public partial class Customer
     //    ErrorMessage = "Incorrect email formatting.")]
     public string Email { get; set; } = null!;
 
-    //[Required(ErrorMessage = "Please enter a Phone Number.")]
-    //[RegularExpression("^(?([0-9]{3}))?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$",
-    //    ErrorMessage = "Incorrect phone number formatting.")]
-    public int PhoneNumber { get; set; }
+    [Required(ErrorMessage = "Please enter a Phone Number.")]
+    [RegularExpression("^(?([0-9]{3}))?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$",
+        ErrorMessage = "Incorrect phone number formatting.")]
+    public string PhoneNumber { get; set; } = null!;
 
     [InverseProperty("Customer")]
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
